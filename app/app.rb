@@ -5,7 +5,14 @@ module HomeioLite
     register Padrino::Mailer
     register Padrino::Helpers
 
+    register Barista::Integration::Sinatra
+
     enable :sessions
+
+    get '/javascripts/applications.js' do
+      content_type 'text/javascript', charset: 'utf-8'
+      coffee :"../../public/javascripts/rus_test"
+    end
 
     ##
     # Caching support.

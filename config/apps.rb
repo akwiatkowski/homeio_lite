@@ -1,3 +1,18 @@
+# Barista (for CoffeeScript Support)
+Barista.root = File.join(Barista.app_root, 'app/coffeescripts')
+Barista.output_root = File.join(Barista.app_root, 'public/javascripts/compiled')
+Barista.configure
+
+# If development, Compiles CoffeeScript to JS after reload
+# Else if production, compiles on load
+if Padrino.env == :development
+  Padrino.after_load do
+    Barista.compile_all!
+  end
+elsif Padrino.env == :production
+  Barista.compile_all!
+end
+
 ##
 # This file mounts each app in the Padrino project to a specified sub-uri.
 # You can mount additional applications using any of these commands below:

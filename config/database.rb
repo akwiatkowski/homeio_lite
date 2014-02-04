@@ -1,7 +1,13 @@
+db = case Padrino.env
+       when :development then
+         Sequel.connect("postgres://localhost/homeio", :loggers => [logger], username: "synergia", password: "synergia")
+       when :production then
+         Sequel.connect("postgres://localhost/homeio", :loggers => [logger])
+       when :test then
+         Sequel.connect("postgres://localhost/homeio_lite_test", :loggers => [logger])
+     end
+db = Sequel.connect("sqlite:///" + Padrino.root('db', "homeio_lite_development.db"), :loggers => [logger])
+
 Sequel::Model.plugin(:schema)
 Sequel::Model.raise_on_save_failure = false # Do not throw exceptions on failure
-Sequel::Model.db = case Padrino.env
-  when :development then Sequel.connect("postgres://localhost/homeio_lite_development", :loggers => [logger])
-  when :production  then Sequel.connect("postgres://localhost/homeio_lite_production",  :loggers => [logger])
-  when :test        then Sequel.connect("postgres://localhost/homeio_lite_test",        :loggers => [logger])
-end
+Sequel::Model.db = db
