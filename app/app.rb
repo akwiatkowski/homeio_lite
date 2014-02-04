@@ -4,14 +4,58 @@ module HomeioLite
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Warden
 
-    register Barista::Integration::Sinatra
+    #register Barista::Integration::Sinatra
 
     enable :sessions
+    layout 'application'
 
-    get '/javascripts/applications.js' do
-      content_type 'text/javascript', charset: 'utf-8'
-      coffee :"../../public/javascripts/rus_test"
+    # Warden auth
+    get "/" do
+      if user
+        redirect_to "/dashboard"
+      else
+        redirect_to "/sessions/login"
+      end
+    end
+
+    post '/unauthenticated' do
+      redirect_to "/sessions/login"
+    end
+
+    Warden::Strategies.add(:password) do
+      def valid?
+        params["email"] || params["password"]
+      end
+
+      def authenticate!
+        u = User.authenticate(params["email"], params["password"])
+        u.nil? ? fail!("Could not log in") : success!(u)
+      end
+    end
+
+    Warden::Manager.serialize_into_session do |user|
+      user.email
+    end
+
+    Warden::Manager.serialize_from_session do |email|
+      User.find(email: email).first
+    end
+
+    alias_method :current_account, :user
+
+    def store_location!
+      session['warden.location'] = request.path
+    end
+
+    def redirect_back_or(*args)
+      if back = session['warden.location']
+        session.delete('warden.location')
+        redirect(back)
+      else
+        redirect(*args)
+      end
     end
 
     ##

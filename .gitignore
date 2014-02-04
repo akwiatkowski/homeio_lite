@@ -11,3 +11,4 @@ db/*.db
 _tmp
 config/database.rb
 public/javascripts/compiled/*
+public/stylesheets/application.css
