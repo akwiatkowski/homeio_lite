@@ -11,9 +11,14 @@ gem 'rake'
 # Component requirements
 gem 'sass'
 gem 'slim'
-gem 'pg'
+gem 'coffee-script'
+gem 'barista'
 gem 'sequel'
 gem 'padrino-warden'
+
+# DB
+gem 'pg'
+gem 'sqlite3'
 
 # Test requirements
 gem 'rspec', :group => 'test'

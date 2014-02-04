@@ -9,3 +9,5 @@ db/*.db
 .*.sw*
 .idea
 _tmp
+config/database.rb
+public/javascripts/compiled/*
