@@ -8,7 +8,7 @@ gem 'oj' # faster json
 
 gem 'rake'
 
-# Component requirements
+# Frontend
 gem 'sass'
 gem 'slim'
 gem 'coffee-script'
@@ -19,6 +19,9 @@ gem 'padrino-warden'
 # DB
 gem 'pg'
 gem 'sqlite3'
+gem 'ohm'
+gem 'ohm-contrib'
+gem 'hiredis'
 
 # Test requirements
 gem 'rspec', :group => 'test'
