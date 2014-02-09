@@ -5,4 +5,6 @@ class MeasCache < Ohm::Model
   attribute :name
   unique :name
   index :name
+
+  attribute :definition, type: Type::Hash
 end
