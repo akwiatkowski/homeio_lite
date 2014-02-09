@@ -1,0 +1,2 @@
+class MeasArchiveStorage
+end
