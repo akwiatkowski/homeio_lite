@@ -2,51 +2,52 @@ class MeasCacheStorage
   #MAX_BUFFER_SIZE = 200_000
   MAX_BUFFER_SIZE = 200
 
-  attr_reader :ohm, :redis, :redis_list_name, :name
+  attr_reader :ohm, :redis, :name, :definition,
+              :redis_last_time_name, :redis_list_name
 
   def self.[](name)
     new(name)
   end
 
-  def initialize(name)
+  def initialize(name, _def = nil)
     @name = name
     @redis = Redis.new
     @redis_list_name = "homeio_#{name}_buffer"
+    @redis_last_time_name = "homeio_#{name}_last_time"
 
     @ohm = MeasCache.find(name: name).first
-    @ohm = MeasCache.new(name: name) if @ohm.nil?
-    @ohm.save!
-  end
+    if @ohm.nil?
+      @ohm = MeasCache.new(name: name)
+      @ohm.save
+    end
 
-  def definition=(_def)
-    @definition = _def
-    @ohm.definition = _def
-    @ohm.save!
-  end
+    if _def
+      @definition = _def
+      @ohm.interval = self.definition[:comm][:interval]
+      @ohm.save
+    end
 
-  def definition
-    @definition || @ohm.definition
   end
 
   ## Fetching, interval
   def from_last_added
-    Time.now - @last_time
+    Time.now.to_f - self.last_time
   end
 
   def interval
-    @definition[:comm][:interval] rescue 4.0
+    @ohm.interval
   end
 
   def command
-    @definition[:comm][:command].to_s
+    self.definition[:comm][:command].to_s
   end
 
   def response_size
-    @definition[:comm][:response_size]
+    self.definition[:comm][:response_size]
   end
 
   def fetchable?
-    return true if @last_time.nil? # first fetch
+    return true if self.last_time.nil? # first fetch
     from_last_added > interval
   end
 
@@ -59,8 +60,25 @@ class MeasCacheStorage
     add_measurement(raw)
   end
 
+  def redis_last_time
+    t = redis.get(redis_last_time_name)
+    t = t.to_f unless t.nil?
+    t
+  end
+
+  def last_time
+    @last_time = redis_last_time unless defined? @last_time
+    @last_time
+  end
+
+  def last_time!
+    t = Time.now.to_f
+    redis.set(redis_last_time_name, t)
+    @last_time = t
+  end
+
   def add_measurement(raw)
-    @last_time = Time.now
+    last_time!
 
     if redis.llen(redis_list_name) > MAX_BUFFER_SIZE
       redis.rpoplpush(redis_list_name, raw)
@@ -71,5 +89,14 @@ class MeasCacheStorage
 
   def buffer(from, to)
     redis.lrange(redis_list_name, from, to)
+  end
+
+  def buffer_raw_time(from, to)
+    i = -1
+    buffer(from, to).collect { |b| i += 1; [b, self.last_time - i * self.interval] }
+  end
+
+  def clear_buffer
+    redis.ltrim(redis_list_name, 0, 0)
   end
 end

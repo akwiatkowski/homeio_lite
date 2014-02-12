@@ -4,8 +4,10 @@ class MeasFetcher
     @meas_types = Hash.new
     MEAS_TYPES.each do |definition|
       name = definition[:name]
-      @meas_cache_storages[name] = MeasCacheStorage.new(name)
+      @meas_cache_storages[name] = MeasCacheStorage.new(name, definition)
       @meas_cache_storages[name].definition = definition
+      # time is not stored in list
+      @meas_cache_storages[name].clear_buffer
 
       c = MeasType.where(name: name).first
       c = MeasType.new(name: name) if c.nil?
