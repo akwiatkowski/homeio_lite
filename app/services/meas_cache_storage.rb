@@ -51,6 +51,15 @@ class MeasCacheStorage
     @ohm.response_size
   end
 
+  def coefficient_linear
+    @ohm.coefficient_linear
+  end
+
+  def coefficient_offset
+    @ohm.coefficient_offset
+  end
+
+
   def fetchable?
     return true if self.last_time.nil? # first fetch
     from_last_added > interval
@@ -97,12 +106,29 @@ class MeasCacheStorage
     redis.lrange(redis_list_name, from, to)
   end
 
-  def buffer_raw_time(from, to)
-    i = -1
-    buffer(from, to).collect { |b| i += 1; [b, self.last_time - i * self.interval] }
-  end
-
   def clear_buffer
     redis.ltrim(redis_list_name, 0, 0)
   end
+
+  def raw_to_value(raw)
+
+  end
+
+  # Buffer helpers
+  def buffer_raw_time(from, to)
+    i = -1
+    buffer(from, to).collect { |b| i += 1; [b, self.last_time - i * self.interval] }.reverse
+  end
+
+  def buffer_raw_relative_time(from, to)
+    i = 0
+    bs = buffer(from, to)
+    bs.collect { |b| i += 1; [b, (bs.size - i)* self.interval] }.reverse
+  end
+
+  def buffer_values_relative_time(from, to)
+    buffer_raw_relative_time(from, to).collect { |b| [b[0].to_f * coefficient_linear + coefficient_offset, b[1]] }
+  end
+
+
 end
