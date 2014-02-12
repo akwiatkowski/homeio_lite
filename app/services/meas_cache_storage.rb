@@ -23,6 +23,11 @@ class MeasCacheStorage
 
     if _def
       @definition = _def
+      @ohm.command = self.definition[:comm][:command]
+      @ohm.command = @ohm.command.kind_of?(Array) ? @ohm.command.join : @ohm.command.to_s
+      @ohm.response_size = self.definition[:comm][:response_size]
+      @ohm.coefficient_linear = self.definition[:comm][:coefficient_linear]
+      @ohm.coefficient_offset = self.definition[:comm][:coefficient_offset]
       @ohm.interval = self.definition[:comm][:interval]
       @ohm.save
     end
@@ -39,11 +44,11 @@ class MeasCacheStorage
   end
 
   def command
-    self.definition[:comm][:command].to_s
+    @ohm.command
   end
 
   def response_size
-    self.definition[:comm][:response_size]
+    @ohm.response_size
   end
 
   def fetchable?
@@ -52,6 +57,7 @@ class MeasCacheStorage
   end
 
   def fetch
+    puts fetchable?
     fetch! if fetchable?
   end
 

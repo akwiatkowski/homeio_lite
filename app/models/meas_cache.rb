@@ -6,8 +6,10 @@ class MeasCache < Ohm::Model
   unique :name
   index :name
 
-  attribute :interval, Type::Float
   attribute :start_time, Type::Float
-
-  attribute :definition, Type::Hash
+  attribute :command
+  attribute :response_size, Type::Integer
+  attribute :coefficient_linear, Type::Float
+  attribute :coefficient_offset, Type::Float
+  attribute :interval, Type::Float
 end

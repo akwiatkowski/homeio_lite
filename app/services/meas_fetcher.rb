@@ -5,7 +5,6 @@ class MeasFetcher
     MEAS_TYPES.each do |definition|
       name = definition[:name]
       @meas_cache_storages[name] = MeasCacheStorage.new(name, definition)
-      @meas_cache_storages[name].definition = definition
       # time is not stored in list
       @meas_cache_storages[name].clear_buffer
 
