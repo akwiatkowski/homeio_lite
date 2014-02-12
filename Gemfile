@@ -19,8 +19,9 @@ gem 'padrino-warden'
 # DB
 gem 'pg'
 gem 'sqlite3'
-gem 'ohm'
-gem 'ohm-contrib'
+gem 'ohm', github: "frodsan/ohm"
+gem 'ohm-contrib', github: "cyx/ohm-contrib"
+gem 'redis'
 gem 'hiredis'
 
 # Test requirements

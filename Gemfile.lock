@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/cyx/ohm-contrib.git
+  revision: 251b609a85e00e558d1ac71450c2bba512ea53be
+  specs:
+    ohm-contrib (2.0.0.rc1)
+      ohm (~> 2.0.0.rc1)
+
+GIT
+  remote: git://github.com/frodsan/ohm.git
+  revision: d9bc4fb8f60d827467a60968e8662f532f8f86c6
+  specs:
+    ohm (2.0.0.rc1)
+      msgpack
+      nido
+      redic
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,15 +39,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    msgpack (0.5.8)
     multi_json (1.8.4)
-    nest (1.1.2)
-      redis
-    ohm (1.3.2)
-      nest (~> 1.0)
-      redis
-      scrivener (~> 0.0.3)
-    ohm-contrib (1.2)
-      ohm (~> 1.2)
+    nido (0.0.1)
     oj (2.5.4)
     padrino (0.11.4)
       padrino-admin (= 0.11.4)
@@ -72,6 +82,8 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.1.1)
+    redic (0.0.8)
+      hiredis
     redis (3.0.7)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -82,7 +94,6 @@ GEM
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.5)
     sass (3.2.14)
-    scrivener (0.0.3)
     sequel (4.7.0)
     sinatra (1.4.4)
       rack (~> 1.4)
@@ -114,14 +125,15 @@ DEPENDENCIES
   barista
   coffee-script
   hiredis
-  ohm
-  ohm-contrib
+  ohm!
+  ohm-contrib!
   oj
   padrino (= 0.11.4)
   padrino-warden
   pg
   rack-test
   rake
+  redis
   rspec
   sass
   sequel
