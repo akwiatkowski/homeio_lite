@@ -1,1 +1,12 @@
-test
+#chart
+
+javascript:
+  $(document).ready(function() {
+    //var chart_data = #{[[1,2], [2,2]]};
+    //$.plot("#chart", [ chart_data ]);
+
+    $.getJSON( "/measurements/batt_u", function( data ) {
+      $.plot("#chart", [ data ]);
+    });
+
+  });
