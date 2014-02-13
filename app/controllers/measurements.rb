@@ -3,8 +3,8 @@ HomeioLite::App.controller :measurements do
     limit = (params[:limit] || 100).to_i
 
     m = MeasCacheStorage[params[:name]]
-    b = m.buffer_values_relative_time(0, limit)
+    @buffer = m.buffer_values_relative_time(0, limit)
 
-    b.to_json
+    render 'measurements/cache'
   end
 end

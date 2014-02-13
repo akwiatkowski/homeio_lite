@@ -11,6 +11,8 @@ gem 'rake'
 # Frontend
 gem 'sass'
 gem 'slim'
+gem 'haml'
+gem 'rabl'
 gem 'coffee-script'
 gem 'barista'
 gem 'sequel'

@@ -30,6 +30,8 @@ GEM
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    haml (4.0.5)
+      tilt
     hiredis (0.4.5)
     http_router (0.11.0)
       rack (>= 1.0.0)
@@ -76,6 +78,8 @@ GEM
       warden (>= 0.10.3)
     pg (0.17.1)
     polyglot (0.3.3)
+    rabl (0.9.3)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
@@ -124,6 +128,7 @@ PLATFORMS
 DEPENDENCIES
   barista
   coffee-script
+  haml
   hiredis
   ohm!
   ohm-contrib!
@@ -131,6 +136,7 @@ DEPENDENCIES
   padrino (= 0.11.4)
   padrino-warden
   pg
+  rabl
   rack-test
   rake
   redis

@@ -118,17 +118,17 @@ class MeasCacheStorage
   # TODO fix axes
   def buffer_raw_time(from, to)
     i = -1
-    buffer(from, to).collect { |b| i += 1; [b, self.last_time - i * self.interval] }.reverse
+    buffer(from, to).collect { |b| i += 1; [self.last_time - i * self.interval, b] }.reverse
   end
 
   def buffer_raw_relative_time(from, to)
     i = 0
     bs = buffer(from, to)
-    bs.collect { |b| i += 1; [b, (bs.size - i)* self.interval] }.reverse
+    bs.collect { |b| i += 1; [-i * self.interval, b] }.reverse
   end
 
   def buffer_values_relative_time(from, to)
-    buffer_raw_relative_time(from, to).collect { |b| [b[1], b[0].to_f * coefficient_linear + coefficient_offset] }
+    buffer_raw_relative_time(from, to).collect { |b| [b[0], b[1].to_f * coefficient_linear + coefficient_offset] }
   end
 
 
