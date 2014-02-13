@@ -106,12 +106,18 @@ class MeasCacheStorage
     redis.lrange(redis_list_name, from, to)
   end
 
+  def last
+    r = buffer(0, 0).first
+    return nil if r.nil?
+    r.to_i
+  end
+
   def clear_buffer
     redis.ltrim(redis_list_name, 0, 0)
   end
 
   def raw_to_value(raw)
-
+    (raw + coefficient_offset).to_f * coefficient_linear
   end
 
   # Buffer helpers
@@ -128,7 +134,7 @@ class MeasCacheStorage
   end
 
   def buffer_values_relative_time(from, to)
-    buffer_raw_relative_time(from, to).collect { |b| [b[0], b[1].to_f * coefficient_linear + coefficient_offset] }
+    buffer_raw_relative_time(from, to).collect { |b| [b[0], raw_to_value(b[1])] }
   end
 
 
