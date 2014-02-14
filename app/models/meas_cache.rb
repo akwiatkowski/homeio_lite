@@ -1,6 +1,7 @@
 class MeasCache < Ohm::Model
   include Ohm::DataTypes
   include Ohm::Timestamps
+  #include Ohm::Validations
 
   attribute :name
   unique :name
@@ -12,4 +13,11 @@ class MeasCache < Ohm::Model
   attribute :coefficient_linear, Type::Float
   attribute :coefficient_offset, Type::Float
   attribute :interval, Type::Float
+
+  #assert_present :name,
+  #               :command,
+  #               :response_size,
+  #               :coefficient_linear,
+  #               :coefficient_offset,
+  #               :interval
 end

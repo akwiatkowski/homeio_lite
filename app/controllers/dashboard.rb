@@ -1,5 +1,6 @@
 HomeioLite::App.controller :dashboard do
   get :index do
+    Barista.compile_all!
     render('dashboard/index')
   end
 

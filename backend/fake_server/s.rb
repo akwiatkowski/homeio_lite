@@ -17,7 +17,7 @@ loop do
         raw_data = 12345
       else
         max = 1023
-        float_data = 0.5 + 0.5 * Math.sin(Time.now.to_f * (0.1 + 't'.unpack("C").first.to_f / 400.0))
+        float_data = 0.5 + 0.5 * Math.sin(0.3 * Time.now.to_f * (0.1 + 't'.unpack("C").first.to_f / 400.0))
         raw_data = (max.to_f * float_data).round
       end
 

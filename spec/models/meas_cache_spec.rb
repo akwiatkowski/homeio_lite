@@ -63,10 +63,12 @@ describe MeasType do
 
   it "fetch and store test command 't'" do
     meas_cache_storage = MeasCacheStorage.new(@name_batt, @definition_batt)
-    2.times do
+    t = Time.now
+    count = 1
+    count.times do
       meas_cache_storage.fetch
-      #sleep 1
     end
 
+    puts "time cost #{Time.now - t}"
   end
 end

@@ -15,10 +15,11 @@ class MeasCacheStorage
     @redis_list_name = "homeio_#{name}_buffer"
     @redis_last_time_name = "homeio_#{name}_last_time"
 
+    need_save = false
     @ohm = MeasCache.find(name: name).first
     if @ohm.nil?
       @ohm = MeasCache.new(name: name)
-      @ohm.save
+      need_save = true
     end
 
     if _def
@@ -29,6 +30,10 @@ class MeasCacheStorage
       @ohm.coefficient_linear = self.definition[:comm][:coefficient_linear]
       @ohm.coefficient_offset = self.definition[:comm][:coefficient_offset]
       @ohm.interval = self.definition[:comm][:interval]
+      need_save = true
+    end
+
+    if need_save
       @ohm.save
     end
 
@@ -117,7 +122,7 @@ class MeasCacheStorage
   end
 
   def raw_to_value(raw)
-    (raw + coefficient_offset).to_f * coefficient_linear
+    (raw.to_i + coefficient_offset).to_f * coefficient_linear.to_f
   end
 
   # Buffer helpers
