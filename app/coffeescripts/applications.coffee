@@ -30,6 +30,12 @@ class @Dashboard
     name = $(event.currentTarget).attr("data-meas-name")
     $.getJSON "/measurements/" + name, (data) ->
       buffer = data["buffer"]
+      coefficient_linear = data["meas_cache"]["coefficient_linear"]
+      coefficient_offset = data["meas_cache"]["coefficient_offset"]
+
+      for d in buffer
+        d[1] = ( d[1] + coefficient_offset ) * coefficient_linear
+
       $.plot "#chart", [buffer], flot_options
 
 
