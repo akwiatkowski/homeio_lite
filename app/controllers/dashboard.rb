@@ -6,6 +6,7 @@ HomeioLite::App.controller :dashboard do
 
   get :payload do
     @meas_types = MeasCache.all.to_a
+    @action_types = ActionCache.all.to_a
     @measurements = Hash[@meas_types.collect { |m| [m.name, MeasCacheStorage[m.name].last ] }]
 
     render 'dashboard/payload'
