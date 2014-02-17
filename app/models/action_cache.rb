@@ -9,4 +9,6 @@ class ActionCache < Ohm::Model
   attribute :command
   attribute :response_ok, Type::Integer
   attribute :response_size, Type::Integer
+
+  attribute :important, Type::Boolean
 end

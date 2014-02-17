@@ -30,6 +30,7 @@ class MeasCacheStorage
       @ohm.coefficient_linear = self.definition[:comm][:coefficient_linear]
       @ohm.coefficient_offset = self.definition[:comm][:coefficient_offset]
       @ohm.interval = self.definition[:comm][:interval]
+      @ohm.important = self.definition[:important]
       need_save = true
     end
 
@@ -62,6 +63,10 @@ class MeasCacheStorage
 
   def coefficient_offset
     @ohm.coefficient_offset
+  end
+
+  def important
+    @ohm.important
   end
 
 

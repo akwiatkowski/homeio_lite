@@ -8,7 +8,8 @@ MEAS_TYPES = [
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
       interval: 0.5
-    }
+    },
+    important: true
   },
   {
     name: "i_gen_batt",
@@ -19,7 +20,8 @@ MEAS_TYPES = [
       coefficient_linear: 0.191,
       coefficient_offset: -512,
       interval: 0.5
-    }
+    },
+    important: true
   },
   {
     name: "i_gen_resist",

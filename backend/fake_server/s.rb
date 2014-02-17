@@ -24,6 +24,13 @@ loop do
       response = [raw_data].pack("S")
     elsif response_size == 1
       raw_data = 0
+
+      if internal_command == 'w'
+        raw_data = 21
+      elsif internal_command == 'W'
+        raw_data = 20
+      end
+
       response = [raw_data].pack("C")
     end
 

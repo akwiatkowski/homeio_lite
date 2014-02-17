@@ -12,18 +12,40 @@ class @Dashboard
   onGetMeasTypes: (types) ->
     for meas_type in types
       name = meas_type["meas_type"]["name"]
-      $("#meas_types").append("<a class=\"pure-button meas-button\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>")
+      important = meas_type["meas_type"]["important"]
+      @addMeasButton(name, important)
     $("#meas_types .meas-button").click (event) =>
       @onMeasButtonClick(event)
       return false
+    $("#meas_types .meas-button.regular").hide()
+
+  addMeasButton: (name, important) ->
+    s = "<a class=\"pure-button meas-button"
+    if important
+      s += " important"
+    else
+      s += " regular"
+    s += "\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>"
+    $("#meas_types").append(s)
+
+  addActionButton: (name, important) ->
+    s = "<a class=\"pure-button action-button"
+    if important
+      s += " important"
+    else
+      s += " regular"
+    s += "\" data-action-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>"
+    $("#action_types").append(s)
 
   onGetActionTypes: (types) ->
     for action_type in types
       name = action_type["action_type"]["name"]
-      $("#action_types").append("<a class=\"pure-button action-button\" data-action-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>")
+      important = action_type["action_type"]["important"]
+      @addActionButton(name, important)
     $("#action_types .action-button").click (event) =>
       @onActionButtonClick(event)
       return false
+    $("#action_types .action-button.regular").hide()
 
   onMeasButtonClick: (event) ->
     flot_options =

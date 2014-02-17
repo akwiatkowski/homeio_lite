@@ -14,6 +14,8 @@ class MeasCache < Ohm::Model
   attribute :coefficient_offset, Type::Float
   attribute :interval, Type::Float
 
+  attribute :important, Type::Boolean
+
   #assert_present :name,
   #               :command,
   #               :response_size,

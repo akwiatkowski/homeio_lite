@@ -26,6 +26,7 @@ class ActionCacheStorage
       @ohm.command = @ohm.command.kind_of?(Array) ? @ohm.command.join : @ohm.command.to_s
       @ohm.response_size = self.definition[:comm][:response_size]
       @ohm.response_ok = self.definition[:comm][:response_ok]
+      @ohm.important = self.definition[:important]
       need_save = true
     end
 
@@ -45,6 +46,10 @@ class ActionCacheStorage
 
   def response_ok
     @ohm.response_ok
+  end
+
+  def important
+    @ohm.important
   end
 
   def execute!

@@ -6,6 +6,7 @@ ACTION_TYPES = [
       response_size: 1,
       response_ok: 21
     },
+    important: true
   },
 
   {
@@ -15,6 +16,7 @@ ACTION_TYPES = [
       response_size: 1,
       response_ok: 20
     },
+    important: true
   },
 
   {

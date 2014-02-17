@@ -1,5 +1,5 @@
 child @meas_types => :meas_types do
-  attribute :name, :start_time, :coefficient_linear, :coefficient_offset, :interval
+  attribute :name, :start_time, :coefficient_linear, :coefficient_offset, :interval, :important
 
   node :value do |m|
     @measurements[m.name]
@@ -8,5 +8,5 @@ child @meas_types => :meas_types do
 end
 
 child @action_types => :action_types do
-  attribute :name
+  attribute :name, :important
 end
