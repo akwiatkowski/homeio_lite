@@ -4,18 +4,26 @@ class @Dashboard
 
   getPayload: () ->
     $.getJSON "/dashboard/payload", (data) =>
-      localStorage.setItem("homeio_lite_types", data["meas_types"])
+      localStorage.setItem("homeio_lite_meas_types", data["meas_types"])
+      localStorage.setItem("homeio_lite_action_types", data["action_types"])
       @onGetMeasTypes(data["meas_types"])
-
-  getActionTypes: () ->
-
+      @onGetActionTypes(data["action_types"])
 
   onGetMeasTypes: (types) ->
     for meas_type in types
       name = meas_type["meas_type"]["name"]
-      $("#types").append("<a class=\"pure-button meas-button\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>")
-    $("#types .meas-button").click (event) =>
+      $("#meas_types").append("<a class=\"pure-button meas-button\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>")
+    $("#meas_types .meas-button").click (event) =>
       @onMeasButtonClick(event)
+      return false
+
+  onGetActionTypes: (types) ->
+    for action_type in types
+      name = action_type["action_type"]["name"]
+      $("#action_types").append("<a class=\"pure-button action-button\" data-action-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>")
+    $("#action_types .action-button").click (event) =>
+      @onActionButtonClick(event)
+      return false
 
   onMeasButtonClick: (event) ->
     flot_options =
@@ -38,4 +46,7 @@ class @Dashboard
 
       $.plot "#chart", [buffer], flot_options
 
-
+  onActionButtonClick: (event) ->
+    name = $(event.currentTarget).attr("data-action-name")
+    $.post "/actions/" + name + "/execute", (data) ->
+      console.log data

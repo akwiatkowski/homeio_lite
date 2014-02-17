@@ -49,16 +49,27 @@ class ActionCacheStorage
 
   def execute!
     raw = IoServerProtocol.c(self.command, self.response_size)
-    add_measurement(raw)
+    add_event(raw)
+    @last_response = check_response(raw)
   end
 
-  def add_event
-    raw = Time.now.to_f
+  def check_response(raw)
+    if self.response_ok.nil?
+      { status: true, raw: raw, check: false }
+    elsif self.response_ok == raw
+      { status: true, raw: raw, check: true }
+    else
+      { status: false, raw: raw, check: false }
+    end
+  end
+
+  def add_event(raw)
+    time = Time.now.to_f
 
     if redis.llen(redis_list_name) > MAX_BUFFER_SIZE
-      redis.rpoplpush(redis_list_name, raw)
+      redis.rpoplpush(redis_list_name, time)
     else
-      redis.lpush(redis_list_name, raw)
+      redis.lpush(redis_list_name, time)
     end
   end
 
