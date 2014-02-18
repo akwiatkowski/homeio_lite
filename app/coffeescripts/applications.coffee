@@ -62,11 +62,22 @@ class @Dashboard
       buffer = data["buffer"]
       coefficient_linear = data["meas_cache"]["coefficient_linear"]
       coefficient_offset = data["meas_cache"]["coefficient_offset"]
+      interval = data["meas_cache"]["interval"]
+      last_time = data["meas_cache"]["last_time"]
+      time_offset = last_time - ( (new Date).getTime() / 1000.0 )
+
+      new_data = []
+      i = 0
 
       for d in buffer
-        d[1] = ( d[1] + coefficient_offset ) * coefficient_linear
+        x = -1 * i * interval + time_offset
+        y = ( d + coefficient_offset ) * coefficient_linear
 
-      $.plot "#chart", [buffer], flot_options
+        new_d = [x, y]
+        new_data.push new_d
+        i += 1
+
+      $.plot "#chart", [new_data], flot_options
 
   onActionButtonClick: (event) ->
     name = $(event.currentTarget).attr("data-action-name")
