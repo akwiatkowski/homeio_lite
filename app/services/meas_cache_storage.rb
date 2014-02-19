@@ -148,5 +148,23 @@ class MeasCacheStorage
     buffer_raw_relative_time(from, to).collect { |b| [b[0], raw_to_value(b[1])] }
   end
 
+  def buffer_values_time(from, to)
+    buffer_raw_time(from, to).collect { |b| [b[0], raw_to_value(b[1])] }
+  end
+
+  def buffer_index_for_time_redis(time, _last_time = redis_last_time)
+    buffer_index_for_time(time, _last_time)
+  end
+
+  def buffer_index_for_time(time, _last_time = self.last_time.to_f)
+    # 0 - self.last_time.to_f
+    # 1 - self.last_time.to_f - self.interval
+
+    i = (_last_time - time.to_f) / self.interval
+    i = 0 if i < 0.0
+    i = i.ceil
+
+    return i
+  end
 
 end

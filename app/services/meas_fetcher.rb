@@ -9,6 +9,7 @@ class MeasFetcher
       @meas_cache_storages[name].clear_buffer
 
       @meas_archive_storages[name] = MeasArchiveStorage[name]
+      @meas_archive_storages[name].cache_storage = @meas_cache_storages[name]
     end
   end
 
