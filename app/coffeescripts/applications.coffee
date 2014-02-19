@@ -1,6 +1,7 @@
 class @Dashboard
   constructor: ->
     @getPayload()
+    @dashboardInitials()
 
   getPayload: () ->
     $.getJSON "/dashboard/payload", (data) =>
@@ -8,6 +9,10 @@ class @Dashboard
       localStorage.setItem("homeio_lite_action_types", data["action_types"])
       @onGetMeasTypes(data["meas_types"])
       @onGetActionTypes(data["action_types"])
+
+  dashboardInitials: () ->
+    $('.show-regular').click (event) =>
+      @onToggleRegular(event)
 
   onGetMeasTypes: (types) ->
     for meas_type in types
@@ -88,3 +93,22 @@ class @Dashboard
     name = $(event.currentTarget).attr("data-action-name")
     $.post "/actions/" + name + "/execute", (data) ->
       console.log data
+
+
+  onToggleRegular: (event) ->
+    tag = $(event.currentTarget)
+    show_all = tag.attr("data-show-all")
+
+    if show_all == "true"
+      tag.attr("data-show-all", false)
+      tag.html("Only important")
+      $('.meas-button.regular').hide()
+      $('.action-button.regular').hide()
+    else
+      tag.attr("data-show-all", true)
+      tag.html("Show all")
+      $('.meas-button.regular').show()
+      $('.action-button.regular').show()
+
+    console.log show_all
+    return false

@@ -1,16 +1,15 @@
 .pure-menu.pure-menu-open.pure-menu-vertical
   %ul
+    %li.pure-menu-heading Home
     - if user
       %li= link_to("Dashboard", '/dashboard')
+      %li= link_to("Only important", '#', class: "show-regular", "data-show-all" => false)
 
-      - if @notifications
-        %li.pure-menu-heading Notifications
-        - @notifications.each do |notifications|
-          %li= link_to(notifications.name, "##{notifications.name}")
+    - else
 
-      %li.pure-menu-heading Actions
-      %li= link_to("Clean", '/dashboard/clean', method: :delete)
-      %li= link_to("Purge", '/dashboard/purge', method: :delete)
+
+    %li.pure-menu-heading Actions
+    - if user
       %li= link_to("Sign out", '/sessions/logout')
     - else
       %li= link_to("Sign in", '/sessions/login')
