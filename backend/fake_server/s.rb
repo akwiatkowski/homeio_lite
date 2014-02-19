@@ -15,6 +15,9 @@ loop do
     if response_size == 2
       if internal_command == 't'
         raw_data = 12345
+      elsif internal_command == '3'
+        float_data = Math.sin(Time.now.to_f / 20.0)
+        raw_data = (400.0 + float_data * 2.0).round
       else
         max = 1023
         float_data = 0.5 + 0.5 * Math.sin(0.3 * Time.now.to_f * (0.1 + 't'.unpack("C").first.to_f / 400.0))

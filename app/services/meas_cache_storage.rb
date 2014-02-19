@@ -32,6 +32,11 @@ class MeasCacheStorage
       @ohm.interval = self.definition[:comm][:interval]
       @ohm.important = self.definition[:important]
       @ohm.unit = self.definition[:unit]
+
+      @ohm.archive_min_time = self.definition[:archive][:min_time]
+      @ohm.archive_max_time = self.definition[:archive][:max_time]
+      @ohm.archive_significant = self.definition[:archive][:significant]
+
       need_save = true
     end
 
@@ -152,8 +157,8 @@ class MeasCacheStorage
     buffer_raw_time(from, to).collect { |b| [b[0], raw_to_value(b[1])] }
   end
 
-  def buffer_index_for_time_redis(time, _last_time = redis_last_time)
-    buffer_index_for_time(time, _last_time)
+  def buffer_index_for_time_redis(time)
+    buffer_index_for_time(time, redis_last_time)
   end
 
   def buffer_index_for_time(time, _last_time = self.last_time.to_f)
