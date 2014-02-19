@@ -9,7 +9,12 @@ MEAS_TYPES = [
       coefficient_offset: 0,
       interval: 0.5
     },
-    important: true
+    important: true,
+    archive: {
+      significant: 2.0,
+      min_time: 2.0,
+      max_time: 3600.0
+    }
   },
   {
     name: "i_gen_batt",
@@ -21,7 +26,12 @@ MEAS_TYPES = [
       coefficient_offset: -512,
       interval: 0.5
     },
-    important: true
+    important: true,
+    archive: {
+      significant: 1.0,
+      min_time: 1.0,
+      max_time: 3600.0
+    }
   },
   {
     name: "i_gen_resist",
@@ -32,6 +42,11 @@ MEAS_TYPES = [
       coefficient_linear: 0.191,
       coefficient_offset: -512,
       interval: 0.2
+    },
+    archive: {
+      significant: 2.0,
+      min_time: 2.0,
+      max_time: 3600.0
     }
   },
   {
@@ -43,6 +58,11 @@ MEAS_TYPES = [
       coefficient_linear: 0.191,
       coefficient_offset: -512,
       interval: 2.0
+    },
+    archive: {
+      significant: 1.0,
+      min_time: 5.0,
+      max_time: 3600.0
     }
   },
   {
@@ -54,6 +74,11 @@ MEAS_TYPES = [
       coefficient_linear: 60.0,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 400.0,
+      min_time: 2.0,
+      max_time: 3600.0
     }
   },
   {
@@ -65,6 +90,11 @@ MEAS_TYPES = [
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 2.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   },
   {
@@ -76,6 +106,11 @@ MEAS_TYPES = [
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 2.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   },
   {
@@ -87,6 +122,11 @@ MEAS_TYPES = [
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 2.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   },
   {
@@ -98,6 +138,11 @@ MEAS_TYPES = [
       coefficient_linear: 1.0,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 2.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   },
   {
@@ -109,6 +154,11 @@ MEAS_TYPES = [
       coefficient_linear: 1.0,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 1.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   },
   {
@@ -120,6 +170,11 @@ MEAS_TYPES = [
       coefficient_linear: 1.0,
       coefficient_offset: 0,
       interval: 2.0
+    },
+    archive: {
+      significant: 1.0,
+      min_time: 1.0,
+      max_time: 3600.0
     }
   }
 ]

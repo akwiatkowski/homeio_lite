@@ -17,6 +17,10 @@ class MeasCache < Ohm::Model
 
   attribute :important, Type::Boolean
 
+  attribute :archive_significant, Type::Float
+  attribute :archive_min_time, Type::Float
+  attribute :archive_max_time, Type::Float
+
   #assert_present :name,
   #               :command,
   #               :response_size,
