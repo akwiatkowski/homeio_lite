@@ -11,30 +11,35 @@ class @Dashboard
 
   onGetMeasTypes: (types) ->
     for meas_type in types
-      name = meas_type["meas_type"]["name"]
-      important = meas_type["meas_type"]["important"]
-      @addMeasButton(name, important)
+      @addMeasButton(meas_type)
     $("#meas_types .meas-button").click (event) =>
       @onMeasButtonClick(event)
       return false
     $("#meas_types .meas-button.regular").hide()
 
-  addMeasButton: (name, important) ->
-    s = "<a class=\"pure-button meas-button"
+  addMeasButton: (meas_type) ->
+    name = meas_type["meas_type"]["name"]
+    important = meas_type["meas_type"]["important"]
+    value = (meas_type["meas_type"]["value"] + meas_type["meas_type"]["coefficient_offset"]) * meas_type["meas_type"]["coefficient_linear"]
+    unit = meas_type["meas_type"]["unit"]
+
+    content = "<span class=\"meas-value\">" + value.toFixed(2) + " " + unit + "</span>"
+    content += "<span class=\"meas-name\">" + name + "</span>"
+    s = "<div class=\"pure-button meas-button"
     if important
       s += " important"
     else
       s += " regular"
-    s += "\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>"
+    s += "\" data-meas-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + content + "</div>"
     $("#meas_types").append(s)
 
   addActionButton: (name, important) ->
-    s = "<a class=\"pure-button action-button"
+    s = "<div class=\"pure-button action-button"
     if important
       s += " important"
     else
       s += " regular"
-    s += "\" data-action-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</a>"
+    s += "\" data-action-name=\"" + name + "\" href=\"#\" id=\"" + name + "\">" + name + "</div>"
     $("#action_types").append(s)
 
   onGetActionTypes: (types) ->

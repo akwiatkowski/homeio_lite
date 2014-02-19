@@ -31,6 +31,7 @@ class MeasCacheStorage
       @ohm.coefficient_offset = self.definition[:comm][:coefficient_offset]
       @ohm.interval = self.definition[:comm][:interval]
       @ohm.important = self.definition[:important]
+      @ohm.unit = self.definition[:unit]
       need_save = true
     end
 

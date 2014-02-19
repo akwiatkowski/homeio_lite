@@ -13,6 +13,7 @@ class MeasCache < Ohm::Model
   attribute :coefficient_linear, Type::Float
   attribute :coefficient_offset, Type::Float
   attribute :interval, Type::Float
+  attribute :unit
 
   attribute :important, Type::Boolean
 
