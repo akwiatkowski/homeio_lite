@@ -59,12 +59,14 @@ class ActionCacheStorage
   end
 
   def check_response(raw)
+    t = Time.now.to_f
+
     if self.response_ok.nil?
-      { status: true, raw: raw, check: false }
+      { status: true, raw: raw, check: false, time: t }
     elsif self.response_ok == raw
-      { status: true, raw: raw, check: true }
+      { status: true, raw: raw, check: true, time: t }
     else
-      { status: false, raw: raw, check: false }
+      { status: false, raw: raw, check: false, time: t }
     end
   end
 

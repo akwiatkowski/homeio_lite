@@ -90,9 +90,25 @@ class @Dashboard
       $.plot "#chart", [new_data], flot_options
 
   onActionButtonClick: (event) ->
-    name = $(event.currentTarget).attr("data-action-name")
-    $.post "/actions/" + name + "/execute", (data) ->
-      console.log data
+    tag = $(event.currentTarget)
+    name = tag.attr("data-action-name")
+    url = "/actions/" + name + "/execute"
+    $.ajax
+      type: "POST"
+      url: url
+      dataType: "json"
+      success: (data) ->
+        execution_status = data["result"]["status"]
+        if execution_status == true
+          tag.addClass("button-success")
+          setTimeout (->
+            tag.removeClass("button-success")
+          ), 400
+        else
+          tag.addClass("button-error")
+          setTimeout (->
+            tag.removeClass("button-error")
+          ), 400
 
 
   onToggleRegular: (event) ->
