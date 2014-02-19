@@ -12,3 +12,4 @@ _tmp
 config/database.rb
 public/javascripts/compiled/*
 public/stylesheets/application.css
+data

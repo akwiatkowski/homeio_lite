@@ -39,7 +39,7 @@ class MeasArchiveStorage
   end
 
   def archive
-    load_buffer
+    buffer
 
     if archive?
       archive!
@@ -50,32 +50,12 @@ class MeasArchiveStorage
 
   def buffer_index
     i = @cache_storage.buffer_index_for_time_redis(@last_time.to_f)
-    puts "index #{i}"
+    logger.debug "index #{i}"
     return i
   end
 
   def buffer
     @buffer = @cache_storage.buffer_values_time(0, buffer_index)
-  end
-
-  def buffer_value_range
-    _b = @buffer.collect { |b| b[1] }
-    @buffer_value_range = [_b.min, _b.max]
-    @buffer_value_diff = @buffer_value_range[1] - @buffer_value_range[0]
-    @buffer_value_range
-  end
-
-  def buffer_time_range
-    _b = @buffer.collect { |b| b[0] }
-    @buffer_time_range = [_b.min, _b.max]
-    @buffer_time_diff = @buffer_time_range[1] - @buffer_time_range[0]
-    @buffer_time_range
-  end
-
-  def load_buffer
-    buffer
-    buffer_time_range
-    buffer_value_range
   end
 
   def archive?
@@ -85,16 +65,16 @@ class MeasArchiveStorage
 
     if time_offset < @archive_min_time
       to_archive = false
-      puts "A"
+      logger.debug "no archive - too often"
     elsif time_offset >= @archive_max_time
       to_archive = true
-      puts "B"
+      logger.debug "archive - interval too long"
     elsif @last_value.nil?
       to_archive = true
-      puts "C"
+      logger.debug "archive - initial"
     elsif (@last_value - avg_buffer_value).abs > @archive_significant
       to_archive = true
-      puts "D"
+      logger.debug "archive - value change"
     end
 
     to_archive
@@ -103,8 +83,6 @@ class MeasArchiveStorage
   def archive!
     if @buffer.nil?
       buffer
-      buffer_time_range
-      buffer_value_range
     end
     return nil if @buffer.nil? or @buffer.size == 0
 

@@ -1,11 +1,17 @@
 class MeasArchiver
+  POOL_SIZE = 1
+
   def initialize
     @meas_archive_storages = Hash.new
-    @meas_pool = Array.new
     MEAS_TYPES.each do |definition|
       name = definition[:name]
       @meas_archive_storages[name] = MeasArchiveStorage[name]
     end
+
+    clear_pool
+
+    @files_path = Padrino.root('data', 'backup')
+    FileUtils.mkdir_p(@files_path) unless File.exist?(@files_path)
   end
 
   def make_it_so
@@ -14,11 +20,55 @@ class MeasArchiver
         object = meas_archive_storage.archive
         unless object.nil?
           @meas_pool << object
-          puts "size #{@meas_pool.size}"
+          logger.info "size #{@meas_pool.size}"
         end
+      end
+
+      if @meas_pool.size >= POOL_SIZE
+        store_in_db
+        store_in_file
+        clear_pool
       end
 
       sleep 0.2
     end
+  end
+
+  def store_in_db
+    Sequel::Model.db.transaction do
+      @meas_pool.each do |m|
+        object = MeasArchive.new
+        object.meas_type_id = m[:meas_type].id
+        object.time_from = m[:time_from]
+        object.time_to = m[:time_to]
+        object.value = m[:value]
+        object.save
+      end
+    end
+
+    logger.info "Stored #{@meas_pool.size} in DB"
+  end
+
+  def store_in_file
+    file_name = File.join(@files_path, "meas_#{Time.now.strftime("%Y_%m_%d")}.csv")
+    exists = File.exist?(file_name)
+    file = File.new(file_name, 'a')
+
+    unless exists
+      file.puts "meas_type; unix_time_from; unix_time_to; raw_value; value"
+    end
+
+    @meas_pool.each do |m|
+      file.puts "#{m[:meas_type].name}; #{m[:time_from].to_f}; #{m[:time_to].to_f}; ; #{m[:value].to_f}"
+    end
+
+    file.close
+
+    logger.info "Stored #{@meas_pool.size} in file #{file_name}"
+  end
+
+
+  def clear_pool
+    @meas_pool = Array.new
   end
 end
