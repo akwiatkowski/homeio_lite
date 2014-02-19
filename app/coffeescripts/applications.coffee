@@ -10,17 +10,35 @@ class @Dashboard
       @onGetMeasTypes(data["meas_types"])
       @onGetActionTypes(data["action_types"])
 
+  getPayloadUpdate: () ->
+    $.getJSON "/dashboard/payload", (data) =>
+      @onGetUpdatedMeasTypes(data["meas_types"])
+
   dashboardInitials: () ->
     $('.show-regular').click (event) =>
       @onToggleRegular(event)
+    $('.update-payload').click (event) =>
+      @getPayloadUpdate()
 
   onGetMeasTypes: (types) ->
     for meas_type in types
       @addMeasButton(meas_type)
+    @onGetUpdatedMeasTypes(types)
+
     $("#meas_types .meas-button").click (event) =>
       @onMeasButtonClick(event)
       return false
     $("#meas_types .meas-button.regular").hide()
+
+  onGetUpdatedMeasTypes: (types) ->
+    for meas_type in types
+      name = meas_type["meas_type"]["name"]
+      value = (meas_type["meas_type"]["value"] + meas_type["meas_type"]["coefficient_offset"]) * meas_type["meas_type"]["coefficient_linear"]
+      unit = meas_type["meas_type"]["unit"]
+      tag = $('[data-meas-name="' + name + '"] .meas-value')
+      value_content = value.toFixed(2) + " " + unit
+      tag.html(value_content)
+    $(".payload-time").html()
 
   addMeasButton: (meas_type) ->
     name = meas_type["meas_type"]["name"]
@@ -28,7 +46,8 @@ class @Dashboard
     value = (meas_type["meas_type"]["value"] + meas_type["meas_type"]["coefficient_offset"]) * meas_type["meas_type"]["coefficient_linear"]
     unit = meas_type["meas_type"]["unit"]
 
-    content = "<span class=\"meas-value\">" + value.toFixed(2) + " " + unit + "</span>"
+    #content = "<span class=\"meas-value\">" + value.toFixed(2) + " " + unit + "</span>"
+    content = "<span class=\"meas-value\"></span>"
     content += "<span class=\"meas-name\">" + name + "</span>"
     s = "<div class=\"pure-button meas-button"
     if important
@@ -67,7 +86,8 @@ class @Dashboard
     legend:
       show: true
 
-    name = $(event.currentTarget).attr("data-meas-name")
+    tag = $(event.currentTarget)
+    name = tag.attr("data-meas-name")
     $.getJSON "/measurements/" + name, (data) ->
       buffer = data["buffer"]
       coefficient_linear = data["meas_cache"]["coefficient_linear"]
@@ -88,6 +108,10 @@ class @Dashboard
         i += 1
 
       $.plot "#chart", [new_data], flot_options
+
+      $(".meas-button").removeClass "current-meas"
+      tag.addClass "current-meas"
+
 
   onActionButtonClick: (event) ->
     tag = $(event.currentTarget)
