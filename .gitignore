@@ -10,6 +10,7 @@ db/*.db
 .idea
 _tmp
 config/database.rb
+config/backend/io_server.rb
 public/javascripts/compiled/*
 public/stylesheets/application.css
 data

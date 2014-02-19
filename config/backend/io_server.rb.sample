@@ -1,0 +1,4 @@
+IO_SERVER = {
+  host: 'localhost',
+  port: '2002'
+}
