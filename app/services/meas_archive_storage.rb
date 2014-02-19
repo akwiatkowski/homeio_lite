@@ -50,7 +50,7 @@ class MeasArchiveStorage
 
   def buffer_index
     i = @cache_storage.buffer_index_for_time_redis(@last_time.to_f)
-    logger.debug "index #{i}"
+    #logger.debug "index #{i}"
     return i
   end
 
@@ -65,16 +65,16 @@ class MeasArchiveStorage
 
     if time_offset < @archive_min_time
       to_archive = false
-      logger.debug "no archive - too often"
+      #logger.debug "no archive - too often"
     elsif time_offset >= @archive_max_time
       to_archive = true
-      logger.debug "archive - interval too long"
+      #logger.debug "archive - interval too long"
     elsif @last_value.nil?
       to_archive = true
-      logger.debug "archive - initial"
+      #logger.debug "archive - initial"
     elsif (@last_value - avg_buffer_value).abs > @archive_significant
       to_archive = true
-      logger.debug "archive - value change"
+      #logger.debug "archive - value change"
     end
 
     to_archive

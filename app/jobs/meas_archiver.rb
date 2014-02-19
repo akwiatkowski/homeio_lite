@@ -1,5 +1,5 @@
 class MeasArchiver
-  POOL_SIZE = 1
+  POOL_SIZE = 100
 
   def initialize
     @meas_archive_storages = Hash.new

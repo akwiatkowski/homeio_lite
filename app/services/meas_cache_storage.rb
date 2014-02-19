@@ -82,12 +82,12 @@ class MeasCacheStorage
   end
 
   def fetch
-    puts fetchable?
     fetch! if fetchable?
   end
 
   def fetch!
     raw = IoServerProtocol.c(self.command, self.response_size)
+    logger.debug ("meas #{name} - fetched raw #{raw}")
     add_measurement(raw)
   end
 
