@@ -1,5 +1,6 @@
 class MeasArchiver
   POOL_SIZE = 100
+  POOL_TIME_INTERVAL = 360.0
 
   def initialize
     @meas_archive_storages = Hash.new
@@ -24,13 +25,13 @@ class MeasArchiver
         end
       end
 
-      if @meas_pool.size >= POOL_SIZE
+      if @meas_pool.size >= POOL_SIZE or (Time.at.to_f - @last_store_time.to_f) >= POOL_TIME_INTERVAL
         store_in_db
         store_in_file
         clear_pool
       end
 
-      sleep 0.2
+      sleep 0.5
     end
   end
 
@@ -39,8 +40,8 @@ class MeasArchiver
       @meas_pool.each do |m|
         object = MeasArchive.new
         object.meas_type_id = m[:meas_type].id
-        object.time_from = m[:time_from]
-        object.time_to = m[:time_to]
+        object.time_from = Time.at(m[:time_from].to_f)
+        object.time_to = Time.at(m[:time_to].to_f)
         object.value = m[:value]
         object.save
       end
@@ -70,5 +71,6 @@ class MeasArchiver
 
   def clear_pool
     @meas_pool = Array.new
+    @last_store_time = Time.now
   end
 end
