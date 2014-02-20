@@ -101,7 +101,7 @@ class @Dashboard
 
       for d in buffer
         x = -1 * i * interval + time_offset
-        y = ( d + coefficient_offset ) * coefficient_linear
+        y = ( parseFloat(d) + coefficient_offset ) * coefficient_linear
 
         new_d = [x, y]
         new_data.push new_d
