@@ -58,6 +58,13 @@ module HomeioLite
       end
     end
 
+    def check_session
+      if user.nil?
+        redirect_to "/"
+        return
+      end
+    end
+
     ##
     # Caching support.
     #
