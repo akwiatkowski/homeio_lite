@@ -42,9 +42,11 @@ Padrino.before_load do
   Padrino.dependency_paths << Padrino.root('config', 'backend', "*.rb")
   Padrino.dependency_paths << Padrino.root('app', 'services', "*.rb")
   Padrino.dependency_paths << Padrino.root('app', 'jobs', "*.rb")
+  Padrino.dependency_paths << Padrino.root('app', 'overseers', "*.rb")
 
   Padrino.load_paths << Padrino.root('app', 'services')
   Padrino.load_paths << Padrino.root('app', 'jobs')
+  Padrino.load_paths << Padrino.root('app', 'overseers')
 end
 
 ##
