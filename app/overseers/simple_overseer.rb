@@ -26,7 +26,11 @@ class SimpleOverseer
   end
 
   def check
-    logger.debug "#{self.class.to_s} check, value #{value} #{type} #{threshold}, hit #{hit?}"
+    _hit = hit?
+    logger.debug "#{self.class.to_s} check, value #{value} #{type} #{threshold}, hit #{_hit}"
+    if _hit
+      execute!
+    end
   end
 
   def value
@@ -44,5 +48,9 @@ class SimpleOverseer
 
   def hit?
     @hit.call
+  end
+
+  def execute!
+    @action_cache_storage.execute!
   end
 end
