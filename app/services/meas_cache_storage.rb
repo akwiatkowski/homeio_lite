@@ -157,6 +157,11 @@ class MeasCacheStorage
     buffer_raw_time(from, to).collect { |b| [b[0], raw_to_value(b[1])] }
   end
 
+  def avg_buffer_value(from, to)
+    _b = buffer(from, to).collect{|b| raw_to_value(b)}
+    _b.inject { |sum, el| sum + el }.to_f / _b.size
+  end
+
   def buffer_index_for_time_redis(time)
     buffer_index_for_time(time, redis_last_time)
   end
