@@ -7,7 +7,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
-      interval: 0.5
+      interval: 0.2
     },
     important: true,
     archive: {
@@ -24,7 +24,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.191,
       coefficient_offset: -512,
-      interval: 0.5
+      interval: 0.2
     },
     important: true,
     archive: {
@@ -41,7 +41,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.191,
       coefficient_offset: -512,
-      interval: 0.2
+      interval: 0.5
     },
     archive: {
       significant: 2.0,
@@ -49,22 +49,23 @@ MEAS_TYPES = [
       max_time: 3600.0
     }
   },
-  {
-    name: "i_inverters",
-    unit: "A",
-    comm: {
-      command: ['6'],
-      response_size: 2,
-      coefficient_linear: 0.191,
-      coefficient_offset: -512,
-      interval: 2.0
-    },
-    archive: {
-      significant: 1.0,
-      min_time: 5.0,
-      max_time: 3600.0
-    }
-  },
+  # not used at this moment
+  #{
+  #  name: "i_inverters",
+  #  unit: "A",
+  #  comm: {
+  #    command: ['6'],
+  #    response_size: 2,
+  #    coefficient_linear: 0.191,
+  #    coefficient_offset: -512,
+  #    interval: 2.0
+  #  },
+  #  archive: {
+  #    significant: 1.0,
+  #    min_time: 5.0,
+  #    max_time: 3600.0
+  #  }
+  #},
   {
     name: "imp_per_min",
     unit: "imp/min",
@@ -73,7 +74,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 60.0,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 1.0
     },
     archive: {
       significant: 400.0,
@@ -89,7 +90,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 0.4
     },
     archive: {
       significant: 2.0,
@@ -105,7 +106,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 0.4
     },
     archive: {
       significant: 2.0,
@@ -121,7 +122,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 0.0777126099706744868,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 0.4
     },
     archive: {
       significant: 2.0,
@@ -137,10 +138,10 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 1.0,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 0.4
     },
     archive: {
-      significant: 2.0,
+      significant: 5.0,
       min_time: 1.0,
       max_time: 3600.0
     }
@@ -153,7 +154,7 @@ MEAS_TYPES = [
       response_size: 2,
       coefficient_linear: 1.0,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 1.0
     },
     archive: {
       significant: 1.0,
@@ -169,7 +170,7 @@ MEAS_TYPES = [
       response_size: 1,
       coefficient_linear: 1.0,
       coefficient_offset: 0,
-      interval: 2.0
+      interval: 1.0
     },
     archive: {
       significant: 1.0,
