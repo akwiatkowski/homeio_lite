@@ -25,7 +25,7 @@ class MeasArchiver
         end
       end
 
-      if @meas_pool.size >= POOL_SIZE or (Time.at.to_f - @last_store_time.to_f) >= POOL_TIME_INTERVAL
+      if (@meas_pool.size >= POOL_SIZE) or ((Time.now.to_f - @last_store_time.to_f) >= POOL_TIME_INTERVAL)
         store_in_db
         store_in_file
         clear_pool
