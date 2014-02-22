@@ -81,8 +81,10 @@ class @Dashboard
       series:
         lines:
           show: true
+          fill: true
         points:
-          show: true
+          show: false
+
     legend:
       show: true
 
@@ -96,6 +98,10 @@ class @Dashboard
       last_time = data["meas_cache"]["last_time"]
       time_offset = last_time - ( (new Date).getTime() / 1000.0 )
 
+      # time ranges
+      $("#time-from").html(data["range"]["time_from"])
+      $("#time-to").html(data["range"]["time_to"])
+
       new_data = []
       i = 0
 
@@ -106,6 +112,10 @@ class @Dashboard
         new_d = [x, y]
         new_data.push new_d
         i += 1
+
+      new_data =
+        data: new_data
+        color: "#009922"
 
       $.plot "#chart", [new_data], flot_options
 

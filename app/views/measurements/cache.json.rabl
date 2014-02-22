@@ -6,3 +6,10 @@ node(:meas_cache) {
    :interval => @meas_cache.interval,
    :last_time => @meas_cache_storage.last_time
 }
+node(:range) {
+  attribute :page => @page,
+   :from => @from,
+   :to => @to,
+   :time_from => @time_from,
+   :time_to => @time_to
+}

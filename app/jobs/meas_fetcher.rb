@@ -14,7 +14,7 @@ class MeasFetcher
       @meas_cache_storages.values.each do |meas_cache_storage|
         meas_cache_storage.fetch
       end
-      sleep 0.2
+      sleep 0.1
     end
   end
 end
