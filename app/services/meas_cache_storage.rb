@@ -1,6 +1,6 @@
 class MeasCacheStorage
   #MAX_BUFFER_SIZE = 200_000
-  MAX_BUFFER_SIZE = 5000
+  MAX_BUFFER_SIZE = 10_000
 
   attr_reader :ohm, :redis, :name, :definition,
               :redis_last_time_name, :redis_list_name

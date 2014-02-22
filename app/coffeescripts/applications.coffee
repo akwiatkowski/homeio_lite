@@ -77,6 +77,30 @@ class @Dashboard
     $("#action_types .action-button.regular").hide()
 
   onMeasButtonClick: (event) ->
+    tag = $(event.currentTarget)
+    name = tag.attr("data-meas-name")
+    @getMeasDataAndDrawChart(name, 0)
+    @createMeasPaginationButton(name)
+
+  createMeasPaginationButton: (name) ->
+    $("#chart-pagination").html("")
+    list = [5, 4, 3, 2, 1, 0]
+    for i of list
+      page = 5 - i
+      button = "<div class=\"pure-button meas-pagination-button\" data-meas-name=\"" + name + "\" data-meas-page=\"" + page + "\">" + page + "</div>"
+      $("#chart-pagination").append(button)
+
+    $(".meas-pagination-button").click (event) =>
+      tag = $(event.currentTarget)
+      name = tag.attr("data-meas-name")
+      page = tag.attr("data-meas-page")
+      @getMeasDataAndDrawChart(name, page)
+
+  afterGetMeasDataAndDrawChart: (name) ->
+    $(".meas-button").removeClass "current-meas"
+    $('.meas-button[data-meas-name="' + name + '"]').addClass "current-meas"
+
+  getMeasDataAndDrawChart: (name, page) ->
     flot_options =
       series:
         lines:
@@ -88,9 +112,8 @@ class @Dashboard
     legend:
       show: true
 
-    tag = $(event.currentTarget)
-    name = tag.attr("data-meas-name")
-    $.getJSON "/measurements/" + name, (data) ->
+
+    $.getJSON "/measurements/" + name + "?page=" + page, (data) =>
       buffer = data["buffer"]
       coefficient_linear = data["meas_cache"]["coefficient_linear"]
       coefficient_offset = data["meas_cache"]["coefficient_offset"]
@@ -115,13 +138,10 @@ class @Dashboard
 
       new_data =
         data: new_data
-        color: "#009922"
+        color: "#55f"
 
       $.plot "#chart", [new_data], flot_options
-
-      $(".meas-button").removeClass "current-meas"
-      tag.addClass "current-meas"
-
+      @afterGetMeasDataAndDrawChart(name)
 
   onActionButtonClick: (event) ->
     tag = $(event.currentTarget)
