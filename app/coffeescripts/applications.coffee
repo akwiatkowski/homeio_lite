@@ -3,16 +3,27 @@ class @Dashboard
     @getPayload()
     @dashboardInitials()
 
+  showWaitingSymbol: () ->
+    $(".ajax-loader").show()
+
+  hideWaitingSymbol: () ->
+    $(".ajax-loader").hide()
+
+
   getPayload: () ->
+    @showWaitingSymbol()
     $.getJSON "/dashboard/payload", (data) =>
       localStorage.setItem("homeio_lite_meas_types", data["meas_types"])
       localStorage.setItem("homeio_lite_action_types", data["action_types"])
       @onGetMeasTypes(data["meas_types"])
       @onGetActionTypes(data["action_types"])
+      @hideWaitingSymbol()
 
   getPayloadUpdate: () ->
+    @showWaitingSymbol()
     $.getJSON "/dashboard/payload", (data) =>
       @onGetUpdatedMeasTypes(data["meas_types"])
+      @hideWaitingSymbol()
 
   dashboardInitials: () ->
     $('.show-regular').click (event) =>
@@ -118,6 +129,7 @@ class @Dashboard
       show: true
 
 
+    @showWaitingSymbol()
     $.getJSON "/measurements/" + name + "?page=" + page, (data) =>
       buffer = data["buffer"]
       coefficient_linear = data["meas_cache"]["coefficient_linear"]
@@ -155,11 +167,15 @@ class @Dashboard
       $.plot "#chart", [new_data], flot_options
       @afterGetMeasDataAndDrawChart(name)
       @createMeasPaginationButton(name, page)
+      @hideWaitingSymbol()
 
   onActionButtonClick: (event) ->
     tag = $(event.currentTarget)
     name = tag.attr("data-action-name")
     url = "/actions/" + name + "/execute"
+
+    @showWaitingSymbol()
+
     $.ajax
       type: "POST"
       url: url
@@ -176,6 +192,7 @@ class @Dashboard
           setTimeout (->
             tag.removeClass("button-error")
           ), 400
+        @hideWaitingSymbol()
 
 
   onToggleRegular: (event) ->
