@@ -80,15 +80,20 @@ class @Dashboard
     tag = $(event.currentTarget)
     name = tag.attr("data-meas-name")
     @getMeasDataAndDrawChart(name, 0)
-    @createMeasPaginationButton(name)
 
-  createMeasPaginationButton: (name) ->
+  createMeasPaginationButton: (name, page) ->
     $("#chart-pagination").html("")
-    list = [5, 4, 3, 2, 1, 0]
+    list = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
     for i of list
-      page = 5 - i
-      button = "<div class=\"pure-button meas-pagination-button\" data-meas-name=\"" + name + "\" data-meas-page=\"" + page + "\">" + page + "</div>"
-      $("#chart-pagination").append(button)
+      i_current = 5 - parseInt(i)
+      i_page = i_current + parseInt(page)
+      if i_page >= 0
+        if i_current == 0
+          klass_sufix = " current-pagination-button"
+        else
+          klass_sufix = ""
+        button = "<div class=\"pure-button meas-pagination-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-page=\"" + i_page + "\">" + i_page + "</div>"
+        $("#chart-pagination").append(button)
 
     $(".meas-pagination-button").click (event) =>
       tag = $(event.currentTarget)
@@ -119,7 +124,8 @@ class @Dashboard
       coefficient_offset = data["meas_cache"]["coefficient_offset"]
       interval = data["meas_cache"]["interval"]
       last_time = data["meas_cache"]["last_time"]
-      time_offset = last_time - ( (new Date).getTime() / 1000.0 )
+      current_time = ( (new Date).getTime() / 1000.0 )
+      time_offset = last_time - current_time - page * interval * buffer.length
 
       # time ranges
       $("#time-from").html(data["range"]["time_from"])
@@ -136,12 +142,19 @@ class @Dashboard
         new_data.push new_d
         i += 1
 
+      $("#chart-info").html("<strong>" + buffer.length + "</strong> measurements")
+      if buffer.length > 0
+        time_range = new_data[0][0] - new_data[new_data.length - 1][0]
+        $("#chart-info").html( $("#chart-info").html() + ", " + "<strong>" + time_range + "</strong> seconds")
+        $("#chart-info").html( $("#chart-info").html() + ", " + "<strong>" + Math.round(-1 * time_offset) + "</strong> seconds ago")
+
       new_data =
         data: new_data
         color: "#55f"
 
       $.plot "#chart", [new_data], flot_options
       @afterGetMeasDataAndDrawChart(name)
+      @createMeasPaginationButton(name, page)
 
   onActionButtonClick: (event) ->
     tag = $(event.currentTarget)
