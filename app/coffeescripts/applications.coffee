@@ -180,7 +180,7 @@ class @Dashboard
       type: "POST"
       url: url
       dataType: "json"
-      success: (data) ->
+      success: (data) =>
         execution_status = data["result"]["status"]
         if execution_status == true
           tag.addClass("button-success")
@@ -193,6 +193,7 @@ class @Dashboard
             tag.removeClass("button-error")
           ), 400
         @hideWaitingSymbol()
+
 
 
   onToggleRegular: (event) ->
