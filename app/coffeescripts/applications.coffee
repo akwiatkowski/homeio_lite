@@ -99,11 +99,19 @@ class @Dashboard
     $("input[name='meas_name']").val(name)
     @getMeasDataAndDrawChart()
 
+  onZoomButtonClick: (event) ->
+    tag = $(event.currentTarget)
+    limit = tag.attr("data-meas-zoom")
+    $("input[name='limit']").val(limit)
+    @getMeasDataAndDrawChart()
+
   createMeasPaginationAndZoomButton: (name, page, limit) ->
     $("#chart-pagination").html("")
-    list = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
-    for i of list
-      i_current = 5 - parseInt(i)
+    half_size = 5
+    i = -1 * half_size
+    while i <= half_size
+      i_current = -1 * parseInt(i)
+      i++
       i_page = i_current + parseInt(page)
       if i_page >= 0
         if i_current == 0
@@ -119,9 +127,62 @@ class @Dashboard
       $("input[name='page']").val(page)
       @getMeasDataAndDrawChart()
 
+    $("#chart-zoom").html("")
+    limits = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]
+
+    for i_limit in limits
+      if limit == i_limit
+        klass_sufix = " current-zoom-button"
+      else
+        klass_sufix = ""
+      button = "<div class=\"pure-button meas-zoom-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-zoom=\"" + i_limit + "\">" + i_limit + "</div>"
+      $("#chart-zoom").append(button)
+
+    $(".meas-zoom-button").click (event) =>
+      tag = $(event.currentTarget)
+      i_limit = tag.attr("data-meas-zoom")
+      $("input[name='limit']").val(i_limit)
+      @getMeasDataAndDrawChart()
+
   afterGetMeasDataAndDrawChart: (name) ->
     $(".meas-button").removeClass "current-meas"
     $('.meas-button[data-meas-name="' + name + '"]').addClass "current-meas"
+
+  averageData = (chart_data, factor) ->
+    i = undefined
+    j = undefined
+    x = undefined
+    y = undefined
+    results = []
+    sum = 0
+    length = chart_data.length
+    avgWindow = undefined
+    factor = 1  if not factor or factor <= 0
+
+    # Create a sliding window of averages
+    i = 0
+    while i < length
+
+      # Slice from i to factor
+      avgWindow = chart_data.slice(i, i + factor)
+      j = 0
+
+      while j < avgWindow.length
+        sum += avgWindow[j][0]
+        j++
+      x = sum / avgWindow.length
+
+      sum = 0
+      j = 0
+      while j < avgWindow.length
+        sum += avgWindow[j][1]
+        j++
+      y = sum / avgWindow.length
+
+      results.push [x, y]
+      sum = 0
+      i += factor
+    results
 
   getMeasDataAndDrawChart: () ->
     name = $("input[name='meas_name']").val()
@@ -151,6 +212,9 @@ class @Dashboard
       last_time = data["meas_cache"]["last_time"]
       current_time = ( (new Date).getTime() / 1000.0 )
       time_offset = last_time - current_time - page * interval * buffer.length
+      chart_length = $("#chart").width()
+
+      console.log chart_length
 
       # time ranges
       $("#time-from").html(data["range"]["time_from"])
@@ -167,11 +231,16 @@ class @Dashboard
         new_data.push new_d
         i += 1
 
+      if new_data.length > chart_length
+        factor = Math.ceil(parseFloat(new_data.length) / parseFloat(chart_length))
+        smooth_data = averageData(new_data, factor)
+        new_data = smooth_data
+
       $("#chart-info").html("<strong>" + buffer.length + "</strong> measurements")
       if buffer.length > 0
         time_range = new_data[0][0] - new_data[new_data.length - 1][0]
-        $("#chart-info").html( $("#chart-info").html() + ", " + "<strong>" + time_range + "</strong> seconds")
-        $("#chart-info").html( $("#chart-info").html() + ", " + "<strong>" + Math.round(-1 * time_offset) + "</strong> seconds ago")
+        $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + time_range + "</strong> seconds")
+        $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + Math.round(-1 * time_offset) + "</strong> seconds ago")
 
       new_data =
         data: new_data
