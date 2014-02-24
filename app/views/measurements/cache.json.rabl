@@ -11,5 +11,6 @@ node(:range) {
    :from => @from,
    :to => @to,
    :time_from => @time_from,
-   :time_to => @time_to
+   :time_to => @time_to,
+   :max_page => @max_page
 }

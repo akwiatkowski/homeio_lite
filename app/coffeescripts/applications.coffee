@@ -105,10 +105,18 @@ class @Dashboard
     $("input[name='limit']").val(limit)
     @getMeasDataAndDrawChart()
 
-  createMeasPaginationAndZoomButton: (name, page, limit) ->
+  createMeasPaginationAndZoomButton: (name, page, limit, max_page) ->
     $("#chart-pagination").html("")
     half_size = 5
     i = -1 * half_size
+
+    if page == max_page
+      klass_sufix = " current-pagination-button"
+    else
+      klass_sufix = ""
+    button = "<div class=\"pure-button meas-pagination-extreme meas-pagination-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-page=\"" + max_page + "\">" + max_page + "</div>"
+    $("#chart-pagination").append(button)
+
     while i <= half_size
       i_current = -1 * parseInt(i)
       i++
@@ -118,8 +126,17 @@ class @Dashboard
           klass_sufix = " current-pagination-button"
         else
           klass_sufix = ""
-        button = "<div class=\"pure-button meas-pagination-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-page=\"" + i_page + "\">" + i_page + "</div>"
-        $("#chart-pagination").append(button)
+
+        if i_page > 0 and i_page < max_page
+          button = "<div class=\"pure-button meas-pagination-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-page=\"" + i_page + "\">" + i_page + "</div>"
+          $("#chart-pagination").append(button)
+
+    if page == 0
+      klass_sufix = " current-pagination-button"
+    else
+      klass_sufix = ""
+    button = "<div class=\"pure-button meas-pagination-extreme meas-pagination-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-page=\"" + 0 + "\">" + 0 + "</div>"
+    $("#chart-pagination").append(button)
 
     $(".meas-pagination-button").click (event) =>
       tag = $(event.currentTarget)
@@ -128,7 +145,7 @@ class @Dashboard
       @getMeasDataAndDrawChart()
 
     $("#chart-zoom").html("")
-    limits = [20, 50, 100, 200, 500, 1000, 2000, 5000, 10000]
+    limits = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]
 
     for i_limit in limits
       if limit == i_limit
@@ -143,6 +160,25 @@ class @Dashboard
       i_limit = tag.attr("data-meas-zoom")
       $("input[name='limit']").val(i_limit)
       @getMeasDataAndDrawChart()
+
+    $("#chart-smooth").html("")
+    smooths = [0, 2, 5, 10, 20]
+    current_smooth = parseInt($("input[name='smooth']").val())
+
+    for i_smooth in smooths
+      if current_smooth == i_smooth
+        klass_sufix = " current-smooth-button"
+      else
+        klass_sufix = ""
+      button = "<div class=\"pure-button meas-smooth-button" + klass_sufix + "\" data-meas-name=\"" + name + "\" data-meas-smooth=\"" + i_smooth + "\">" + i_smooth + "</div>"
+      $("#chart-smooth").append(button)
+
+    $(".meas-smooth-button").click (event) =>
+      tag = $(event.currentTarget)
+      i_smooth = tag.attr("data-meas-smooth")
+      $("input[name='smooth']").val(i_smooth)
+      @getMeasDataAndDrawChart()
+
 
   afterGetMeasDataAndDrawChart: (name) ->
     $(".meas-button").removeClass "current-meas"
@@ -188,6 +224,7 @@ class @Dashboard
     name = $("input[name='meas_name']").val()
     page = parseInt($("input[name=page]").val())
     limit = parseInt($("input[name=limit]").val())
+    smooth = parseInt($("input[name=smooth]").val())
 
     console.log name, page, limit
 
@@ -213,12 +250,14 @@ class @Dashboard
       current_time = ( (new Date).getTime() / 1000.0 )
       time_offset = last_time - current_time - page * interval * buffer.length
       chart_length = $("#chart").width()
+      max_page = data["range"]["max_page"]
 
       console.log chart_length
 
       # time ranges
       $("#time-from").html(data["range"]["time_from"])
       $("#time-to").html(data["range"]["time_to"])
+      $("input[name=max_page]").html(max_page)
 
       new_data = []
       i = 0
@@ -233,7 +272,7 @@ class @Dashboard
 
       if new_data.length > chart_length
         factor = Math.ceil(parseFloat(new_data.length) / parseFloat(chart_length))
-        smooth_data = averageData(new_data, factor)
+        smooth_data = averageData(new_data, factor + smooth)
         new_data = smooth_data
 
       $("#chart-info").html("<strong>" + buffer.length + "</strong> measurements")
@@ -248,7 +287,7 @@ class @Dashboard
 
       $.plot "#chart", [new_data], flot_options
       @afterGetMeasDataAndDrawChart(name)
-      @createMeasPaginationAndZoomButton(name, page, limit)
+      @createMeasPaginationAndZoomButton(name, page, limit, max_page)
       @hideWaitingSymbol()
 
   onActionButtonClick: (event) ->

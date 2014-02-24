@@ -1,6 +1,5 @@
 class MeasCacheStorage
-  #MAX_BUFFER_SIZE = 200_000
-  MAX_BUFFER_SIZE = 50_000
+  MAX_BUFFER_SIZE = 200_000
 
   attr_reader :ohm, :redis, :name, :definition,
               :redis_last_time_name, :redis_list_name
@@ -111,11 +110,15 @@ class MeasCacheStorage
   def add_measurement(raw)
     last_time!
 
-    if redis.llen(redis_list_name) > MAX_BUFFER_SIZE
+    if buffer_length > MAX_BUFFER_SIZE
       redis.rpoplpush(redis_list_name, raw)
     else
       redis.lpush(redis_list_name, raw)
     end
+  end
+
+  def buffer_length
+    redis.llen(redis_list_name)
   end
 
   def buffer(from, to)
@@ -167,14 +170,15 @@ class MeasCacheStorage
   end
 
   def buffer_index_for_time(time, _last_time = self.last_time.to_f)
-    # 0 - self.last_time.to_f
-    # 1 - self.last_time.to_f - self.interval
-
     i = (_last_time - time.to_f) / self.interval
     i = 0 if i < 0.0
     i = i.ceil
 
     return i
+  end
+
+  def first_time
+    redis_last_time - self.interval * self.buffer_length
   end
 
 end

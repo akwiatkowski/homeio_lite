@@ -4,14 +4,20 @@
   = hidden_field_tag :meas_name, value: nil
   = hidden_field_tag :page, value: 0
   = hidden_field_tag :limit, value: 100
+  = hidden_field_tag :max_page, value: 0
+  = hidden_field_tag :smooth, value: 0
 
   #chart-times.pure-g
     #time-from.pure-u-1-5
     #chart-info.pure-u-3-5
     #time-to.pure-u-1-5
+
   #chart
   #chart-pagination
   #chart-zoom
+  #chart-smooth
+
+  %hr
 
   #action_types.buttons-div
 

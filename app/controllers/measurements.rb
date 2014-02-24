@@ -11,6 +11,7 @@ HomeioLite::App.controller :measurements do
     @meas_cache = @meas_cache_storage.ohm
     @time_to = Time.at(@meas_cache_storage.last_time) - @meas_cache.interval * @from
     @time_from = Time.at(@meas_cache_storage.last_time) - @meas_cache.interval * @to
+    @max_page = (@meas_cache_storage.buffer_length.to_f / @limit.to_f).floor # because -1
 
     format_time_string = "%Y-%m-%d %H:%M:%S"
     @time_to = @time_to.strftime(format_time_string)
