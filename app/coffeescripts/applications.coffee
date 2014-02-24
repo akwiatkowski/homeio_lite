@@ -2,6 +2,7 @@ class @Dashboard
   constructor: ->
     @getPayload()
     @dashboardInitials()
+    @autoRefresh()
 
   showWaitingSymbol: () ->
     $(".ajax-loader").show()
@@ -28,8 +29,18 @@ class @Dashboard
   dashboardInitials: () ->
     $('.show-regular').click (event) =>
       @onToggleRegular(event)
+    $('.auto-refresh').click (event) =>
+      @onToggleAutoRefresh(event)
     $('.update-payload').click (event) =>
       @getPayloadUpdate()
+
+  autoRefresh: () ->
+    setInterval =>
+      is_refresh = parseInt($("input[name='auto_refresh']").val())
+      if is_refresh == 1
+        @getPayloadUpdate()
+        @getMeasDataAndDrawChart()
+    , 5000
 
   onGetMeasTypes: (types) ->
     for meas_type in types
@@ -226,8 +237,6 @@ class @Dashboard
     limit = parseInt($("input[name=limit]").val())
     smooth = parseInt($("input[name=smooth]").val())
 
-    console.log name, page, limit
-
     flot_options =
       series:
         lines:
@@ -251,8 +260,6 @@ class @Dashboard
       time_offset = last_time - current_time - page * interval * buffer.length
       chart_length = $("#chart").width()
       max_page = data["range"]["max_page"]
-
-      console.log chart_length
 
       # time ranges
       $("#time-from").html(data["range"]["time_from"])
@@ -332,5 +339,17 @@ class @Dashboard
       $('.meas-button.regular').show()
       $('.action-button.regular').show()
 
-    console.log show_all
+    return false
+
+  onToggleAutoRefresh: (event) ->
+    tag = $(event.currentTarget)
+    is_refresh = parseInt($("input[name='auto_refresh']").val())
+
+    if is_refresh == 1
+      $("input[name='auto_refresh']").val(0)
+      tag.html("No auto refresh")
+    else
+      $("input[name='auto_refresh']").val(1)
+      tag.html("Auto refresh")
+
     return false

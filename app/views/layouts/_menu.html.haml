@@ -4,7 +4,9 @@
     - if user
       %li= link_to("Dashboard", '/dashboard')
       %li= link_to("Only important", '#', class: "show-regular", "data-show-all" => false)
-      %li= link_to("Refresh", '#', class: "update-payload")
+      %li= link_to("No auto refresh", '#', class: "auto-refresh")
+
+      %li= link_to("Meas refresh", '#', class: "update-payload")
     - else
 
 
