@@ -1,6 +1,10 @@
 #dashboard
   #meas_types.buttons-div
 
+  = hidden_field_tag :meas_name, value: nil
+  = hidden_field_tag :page, value: 0
+  = hidden_field_tag :limit, value: 100
+
   #chart-pagination
   #chart-times.pure-g
     #time-from.pure-u-1-5

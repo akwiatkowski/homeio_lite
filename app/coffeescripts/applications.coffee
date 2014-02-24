@@ -37,7 +37,7 @@ class @Dashboard
     @onGetUpdatedMeasTypes(types)
 
     $("#meas_types .meas-button").click (event) =>
-      @onMeasButtonClick(event)
+      @onMeasNameButtonClick(event)
       return false
     $("#meas_types .meas-button.regular").hide()
 
@@ -87,12 +87,19 @@ class @Dashboard
       return false
     $("#action_types .action-button.regular").hide()
 
-  onMeasButtonClick: (event) ->
+  onMeasNameButtonClick: (event) ->
     tag = $(event.currentTarget)
     name = tag.attr("data-meas-name")
-    @getMeasDataAndDrawChart(name, 0)
+    $("input[name='meas_name']").val(name)
+    @getMeasDataAndDrawChart()
 
-  createMeasPaginationButton: (name, page) ->
+  onPageButtonClick: (event) ->
+    tag = $(event.currentTarget)
+    name = tag.attr("data-meas-name")
+    $("input[name='meas_name']").val(name)
+    @getMeasDataAndDrawChart()
+
+  createMeasPaginationAndZoomButton: (name, page, limit) ->
     $("#chart-pagination").html("")
     list = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5]
     for i of list
@@ -108,15 +115,21 @@ class @Dashboard
 
     $(".meas-pagination-button").click (event) =>
       tag = $(event.currentTarget)
-      name = tag.attr("data-meas-name")
       page = tag.attr("data-meas-page")
-      @getMeasDataAndDrawChart(name, page)
+      $("input[name='page']").val(page)
+      @getMeasDataAndDrawChart()
 
   afterGetMeasDataAndDrawChart: (name) ->
     $(".meas-button").removeClass "current-meas"
     $('.meas-button[data-meas-name="' + name + '"]').addClass "current-meas"
 
-  getMeasDataAndDrawChart: (name, page) ->
+  getMeasDataAndDrawChart: () ->
+    name = $("input[name='meas_name']").val()
+    page = parseInt($("input[name=page]").val())
+    limit = parseInt($("input[name=limit]").val())
+
+    console.log name, page, limit
+
     flot_options =
       series:
         lines:
@@ -130,7 +143,7 @@ class @Dashboard
 
 
     @showWaitingSymbol()
-    $.getJSON "/measurements/" + name + "?page=" + page, (data) =>
+    $.getJSON "/measurements/" + name + "?page=" + page + "&limit=" + limit, (data) =>
       buffer = data["buffer"]
       coefficient_linear = data["meas_cache"]["coefficient_linear"]
       coefficient_offset = data["meas_cache"]["coefficient_offset"]
@@ -166,7 +179,7 @@ class @Dashboard
 
       $.plot "#chart", [new_data], flot_options
       @afterGetMeasDataAndDrawChart(name)
-      @createMeasPaginationButton(name, page)
+      @createMeasPaginationAndZoomButton(name, page, limit)
       @hideWaitingSymbol()
 
   onActionButtonClick: (event) ->
