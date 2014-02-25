@@ -89,14 +89,15 @@ class @Dashboard
     $("#action_types").append(s)
 
   onGetActionTypes: (types) ->
-    for action_type in types
-      name = action_type["action_type"]["name"]
-      important = action_type["action_type"]["important"]
-      @addActionButton(name, important)
-    $("#action_types .action-button").click (event) =>
-      @onActionButtonClick(event)
-      return false
-    $("#action_types .action-button.regular").hide()
+    if $("input[name='user_role']").val() == "admin"
+      for action_type in types
+        name = action_type["action_type"]["name"]
+        important = action_type["action_type"]["important"]
+        @addActionButton(name, important)
+      $("#action_types .action-button").click (event) =>
+        @onActionButtonClick(event)
+        return false
+      $("#action_types .action-button.regular").hide()
 
   onMeasNameButtonClick: (event) ->
     tag = $(event.currentTarget)
@@ -156,7 +157,10 @@ class @Dashboard
       @getMeasDataAndDrawChart()
 
     $("#chart-zoom").html("")
-    limits = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000]
+    limits = [50, 100, 200, 500, 1000, 2000]
+    console.log $("input[name='user_role']").val() == "admin", $("input[name='user_role']").val()
+    if $("input[name='user_role']").val() == "admin"
+      limits = limits.concat [5000, 10000, 20000, 50000]
 
     for i_limit in limits
       if limit == i_limit
@@ -173,7 +177,7 @@ class @Dashboard
       @getMeasDataAndDrawChart()
 
     $("#chart-smooth").html("")
-    smooths = [0, 2, 5, 10, 20]
+    smooths = [0, 1, 2, 3, 5, 10, 20]
     current_smooth = parseInt($("input[name='smooth']").val())
 
     for i_smooth in smooths
@@ -258,6 +262,7 @@ class @Dashboard
       last_time = data["meas_cache"]["last_time"]
       current_time = ( (new Date).getTime() / 1000.0 )
       time_offset = last_time - current_time - page * interval * buffer.length
+      time_offset_last = current_time - last_time
       chart_length = $("#chart").width()
       max_page = data["range"]["max_page"]
 
@@ -286,7 +291,7 @@ class @Dashboard
       if buffer.length > 0
         time_range = new_data[0][0] - new_data[new_data.length - 1][0]
         $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + time_range + "</strong> seconds")
-        $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + Math.round(-1 * time_offset) + "</strong> seconds ago")
+        $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + Math.round(time_offset_last) + "</strong> seconds ago")
 
       new_data =
         data: new_data

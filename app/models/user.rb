@@ -7,6 +7,7 @@ class User < Ohm::Model
   index :email
 
   attribute :crypted_password
+  attribute :role
 
   def self.authenticate(email, _password)
     u = User.find(email: email).first
@@ -21,5 +22,9 @@ class User < Ohm::Model
 
   def password=(_password)
     self.crypted_password = self.class.crypt_password(_password)
+  end
+
+  def admin?
+    self.role == "admin"
   end
 end

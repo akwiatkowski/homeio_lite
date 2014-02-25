@@ -122,7 +122,7 @@ class MeasCacheStorage
   end
 
   def buffer(from, to)
-    redis.lrange(redis_list_name, from, to)
+    redis.lrange(redis_list_name, from, to).collect(&:to_i)
   end
 
   def last
