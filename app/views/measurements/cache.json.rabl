@@ -4,7 +4,8 @@ node(:meas_cache) {
    :coefficient_linear => @meas_cache.coefficient_linear,
    :coefficient_offset => @meas_cache.coefficient_offset,
    :interval => @meas_cache.interval,
-   :last_time => @meas_cache_storage.last_time
+   :last_time => @meas_cache_storage.last_time,
+   :unit => @meas_cache_storage.unit
 }
 node(:range) {
   attribute :page => @page,

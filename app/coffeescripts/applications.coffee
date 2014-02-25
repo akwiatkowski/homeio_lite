@@ -235,6 +235,22 @@ class @Dashboard
       i += factor
     results
 
+
+  timeToString: (t) ->
+    ts = t.getFullYear()
+    ts = ts + "-"
+    ts = ts + ("0" + (t.getMonth() + 1)).slice(-2)
+    ts = ts + "-"
+    ts = ts + ("0" + t.getDate()).slice(-2)
+    ts = ts + " "
+
+    ts = ts + ("0" + t.getHours()).slice(-2)
+    ts = ts + ":"
+    ts = ts + ("0" + t.getMinutes()).slice(-2)
+    ts = ts + ":"
+    ts = ts + ("0" + t.getSeconds()).slice(-2)
+    return ts
+
   getMeasDataAndDrawChart: () ->
     name = $("input[name='meas_name']").val()
     page = parseInt($("input[name=page]").val())
@@ -248,9 +264,11 @@ class @Dashboard
           fill: true
         points:
           show: false
-
-    legend:
-      show: true
+      legend:
+        show: true
+      grid:
+        clickable: false
+        hoverable: true
 
 
     @showWaitingSymbol()
@@ -265,6 +283,7 @@ class @Dashboard
       time_offset_last = current_time - last_time
       chart_length = $("#chart").width()
       max_page = data["range"]["max_page"]
+      unit = data["meas_cache"]["unit"]
 
       # time ranges
       $("#time-from").html(data["range"]["time_from"])
@@ -296,8 +315,21 @@ class @Dashboard
       new_data =
         data: new_data
         color: "#55f"
+        label: name
 
       $.plot "#chart", [new_data], flot_options
+
+      $("#chart").bind "plothover", (event, pos, item) =>
+        if item
+          #legend = $("#chart .legendLabel")
+          #legend.html(item)
+          t = new Date()
+          t = new Date(t.getTime() + parseFloat(item.datapoint[0]) * 1000.0)
+          v = item.datapoint[1]
+
+          $("#current-point").html(@timeToString(t) + " " + v.toFixed(2) + " " + unit)
+        return
+
       @afterGetMeasDataAndDrawChart(name)
       @createMeasPaginationAndZoomButton(name, page, limit, max_page)
       @hideWaitingSymbol()

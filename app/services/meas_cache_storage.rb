@@ -74,6 +74,9 @@ class MeasCacheStorage
     @ohm.important
   end
 
+  def unit
+    @ohm.unit
+  end
 
   def fetchable?
     return true if self.last_time.nil? # first fetch
