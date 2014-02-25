@@ -312,6 +312,11 @@ class @Dashboard
         $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + time_range + "</strong> seconds")
         $("#chart-info").html($("#chart-info").html() + ", " + "<strong>" + Math.round(time_offset_last) + "</strong> seconds ago")
 
+      latest_unix_rel_time = new_data[0][0]
+      oldest_unix_rel_time = new_data[new_data.length - 1][0]
+      center_unix_rel_time = (latest_unix_rel_time + oldest_unix_rel_time) / 2.0
+      offset_unix_rel_time = latest_unix_rel_time - center_unix_rel_time
+
       new_data =
         data: new_data
         color: "#55f"
@@ -328,6 +333,16 @@ class @Dashboard
           v = item.datapoint[1]
 
           $("#current-point").html(@timeToString(t) + " " + v.toFixed(2) + " " + unit)
+        return
+
+      $("#chart").bind "plotclick", (event, pos, item) =>
+        # TODO not compatible at this moment
+        x = pos.x
+        x_offset = center_unix_rel_time - x
+        x_offset_page = x_offset / offset_unix_rel_time
+        page = parseFloat($("input[name=page]").val()) + x_offset_page
+        $("input[name=page]").val(page)
+        @getMeasDataAndDrawChart()
         return
 
       @afterGetMeasDataAndDrawChart(name)
