@@ -31,7 +31,7 @@ class MeasArchiver
         clear_pool
       end
 
-      sleep 0.5
+      sleep 2.0
     end
   end
 
