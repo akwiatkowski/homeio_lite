@@ -5,6 +5,8 @@ class IoServerProtocol
   @@port = IO_SERVER[:port]
 
   def self.c(command, response_size)
+    return nil if command.to_s == "" or response_size.to_s == ""
+
     s = TCPSocket.open(@@host, @@port)
 
     # <count of command bytes> <count of response bytes> <command bytes>
