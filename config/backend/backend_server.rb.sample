@@ -1,0 +1,5 @@
+BACKEND_SERVER = {
+  host: 'localhost',
+  port: '2005'
+}
+USE_BACKEND = true

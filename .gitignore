@@ -11,6 +11,7 @@ db/*.db
 _tmp
 config/database.rb
 config/backend/io_server.rb
+config/backend/backend_server.rb
 config/backend/actions.rb
 config/backend/measurements.rb
 config/backend/overseers.rb
