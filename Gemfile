@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+#ruby '2.1.1'
 
 gem 'thin'
 # gem 'trinidad', :platform => 'jruby'
@@ -21,8 +21,8 @@ gem 'padrino-warden'
 # DB
 gem 'pg'
 gem 'sqlite3'
-gem 'ohm', github: "frodsan/ohm"
-gem 'ohm-contrib', github: "cyx/ohm-contrib"
+gem 'ohm' #, github: "frodsan/ohm"
+gem 'ohm-contrib' #, github: "cyx/ohm-contrib"
 gem 'redis'
 gem 'hiredis'
 
