@@ -128,6 +128,9 @@ class MeasCacheStorage
 
 
   def last_time(_refresh = false)
+    # such fast, wow, we can update it always
+    _refresh = true if BACKEND
+
     if _refresh or @last_time.nil?
       if BACKEND
         backend_last_time
@@ -135,6 +138,7 @@ class MeasCacheStorage
         redis_last_time
       end
     end
+
     @last_time
   end
 
@@ -244,7 +248,7 @@ class MeasCacheStorage
   end
 
   def buffer_index_for_time_redis(time)
-    buffer_index_for_time(time, redis_last_time)
+    buffer_index_for_time(time, last_time)
   end
 
   def buffer_index_for_time(time, _last_time = self.last_time(true).to_f)
