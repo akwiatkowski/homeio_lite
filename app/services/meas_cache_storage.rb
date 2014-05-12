@@ -248,7 +248,13 @@ class MeasCacheStorage
   end
 
   def buffer_index_for_time(time, _last_time = self.last_time(true).to_f)
-    i = (_last_time - time.to_f) / self.interval
+    _interval = self.interval
+    if _last_time.nil? or time.nil? or _interval.nil?
+      logger.error("MeasCacheStorage['#{self.name}'].buffer_index_for_time(#{time}, #{_last_time}) # interval #{_interval} ")
+      return nil
+    end
+
+    i = (_last_time - time.to_f) / _interval
     i = 0 if i < 0.0
     i = i.ceil
 
