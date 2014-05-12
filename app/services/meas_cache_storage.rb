@@ -54,7 +54,12 @@ class MeasCacheStorage
   end
 
   def interval
-    @ohm.interval
+    if BACKEND
+      backend_interval
+    else
+      @ohm.interval
+    end
+
   end
 
   def command
@@ -114,6 +119,13 @@ class MeasCacheStorage
     @last_time = _d["last_time"]
     @last_time
   end
+
+  def backend_interval
+    _d = backend_fetch(0, 0)
+    @interval = _d["interval"]
+    @interval
+  end
+
 
   def last_time(_refresh = false)
     if _refresh or @last_time.nil?
@@ -235,7 +247,7 @@ class MeasCacheStorage
     buffer_index_for_time(time, redis_last_time)
   end
 
-  def buffer_index_for_time(time, _last_time = self.last_time.to_f)
+  def buffer_index_for_time(time, _last_time = self.last_time(true).to_f)
     i = (_last_time - time.to_f) / self.interval
     i = 0 if i < 0.0
     i = i.ceil
