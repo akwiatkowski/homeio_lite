@@ -15,6 +15,9 @@ config/backend/backend_server.rb
 config/backend/actions.rb
 config/backend/measurements.rb
 config/backend/overseers.rb
+config/backend/location.rb
+config/backend/weather.yml
+
 
 public/javascripts/compiled/*
 public/stylesheets/application.css

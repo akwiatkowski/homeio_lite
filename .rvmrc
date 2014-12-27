@@ -1,1 +1,1 @@
-rvm use 2.1@homeio_lite --create
+rvm use 2.1.2@homeio_lite --create

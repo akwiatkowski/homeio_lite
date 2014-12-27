@@ -46,6 +46,10 @@ Padrino.configure_apps do
   set :protection, true
   set :protect_from_csrf, true
   set :allow_disabled_csrf, true
+
+  #prerequisites.concat Dir[Padrino.root('app', 'services', "*.rb")]
+  #prerequisites.concat Dir[Padrino.root('app', 'overseers', "*.rb")]
+  #prerequisites.concat Dir[Padrino.root('app', 'jobs', "*.rb")]
 end
 
 # Mounts the core application for this project
