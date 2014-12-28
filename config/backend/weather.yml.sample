@@ -2,7 +2,7 @@
   :country: 'Poland'
   :metar: 'EPPO'
   :coords:
-    :lat: 52.411048,
+    :lat: 52.411048
     :lon: 16.928329
   :classes:
     OnetPl:
