@@ -1,4 +1,4 @@
-module HomeioLite
+module HomeIo
   class App < Padrino::Application
     register SassInitializer
     register Padrino::Rendering
@@ -6,9 +6,8 @@ module HomeioLite
     register Padrino::Helpers
     register Padrino::Warden
 
-    #register Barista::Integration::Sinatra
-
     enable :sessions
+
     layout 'application'
 
     # Warden auth
@@ -65,6 +64,7 @@ module HomeioLite
       end
     end
 
+
     ##
     # Caching support.
     #
@@ -73,11 +73,16 @@ module HomeioLite
     #
     # You can customize caching store engines:
     #
-    # set :cache, Padrino::Cache::Store::Memcache.new(::Memcached.new('127.0.0.1:11211', :exception_retry_limit => 1))
-    # set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new('127.0.0.1:11211', :exception_retry_limit => 1))
-    # set :cache, Padrino::Cache::Store::Redis.new(::Redis.new(:host => '127.0.0.1', :port => 6379, :db => 0))
-    # set :cache, Padrino::Cache::Store::Memory.new(50)
-    # set :cache, Padrino::Cache::Store::File.new(Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
+    # set :cache, Padrino::Cache.new(:LRUHash) # Keeps cached values in memory
+    # set :cache, Padrino::Cache.new(:Memcached) # Uses default server at localhost
+    # set :cache, Padrino::Cache.new(:Memcached, '127.0.0.1:11211', :exception_retry_limit => 1)
+    # set :cache, Padrino::Cache.new(:Memcached, :backend => memcached_or_dalli_instance)
+    # set :cache, Padrino::Cache.new(:Redis) # Uses default server at localhost
+    # set :cache, Padrino::Cache.new(:Redis, :host => '127.0.0.1', :port => 6379, :db => 0)
+    # set :cache, Padrino::Cache.new(:Redis, :backend => redis_instance)
+    # set :cache, Padrino::Cache.new(:Mongo) # Uses default server at localhost
+    # set :cache, Padrino::Cache.new(:Mongo, :backend => mongo_client_instance)
+    # set :cache, Padrino::Cache.new(:File, :dir => Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
     #
 
     ##
@@ -112,8 +117,8 @@ module HomeioLite
     #     render 'errors/404'
     #   end
     #
-    #   error 505 do
-    #     render 'errors/505'
+    #   error 500 do
+    #     render 'errors/500'
     #   end
     #
   end

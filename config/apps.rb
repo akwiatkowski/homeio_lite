@@ -42,15 +42,11 @@ end
 #
 Padrino.configure_apps do
   # enable :sessions
-  set :session_secret, '1984adf75bbdc6d0e45f9096ec03d384658cdc9f87cc4a63759e54862b0c2a24'
-  set :protection, true
+  set :session_secret, '338a75e7e2403ede9f4b6ccc1e012ee8b735f02547b5d9a9cf8fd08314f851b8'
+  set :protection, :except => :path_traversal
   set :protect_from_csrf, true
   set :allow_disabled_csrf, true
-
-  #prerequisites.concat Dir[Padrino.root('app', 'services', "*.rb")]
-  #prerequisites.concat Dir[Padrino.root('app', 'overseers', "*.rb")]
-  #prerequisites.concat Dir[Padrino.root('app', 'jobs', "*.rb")]
 end
 
 # Mounts the core application for this project
-Padrino.mount('HomeioLite::App', :app_file => Padrino.root('app/app.rb')).to('/')
+Padrino.mount('HomeIo::App', :app_file => Padrino.root('app/app.rb')).to('/')

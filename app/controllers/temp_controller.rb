@@ -1,4 +1,4 @@
-HomeioLite::App.controller :measurements do
+HomeIo::App.controller :measurements do
   get :show, map: "/meas_type_groups/1/latest.txt" do
     h = Hash.new
     m = MeasCacheStorage["batt_u"]

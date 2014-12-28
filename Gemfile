@@ -1,22 +1,22 @@
 source 'https://rubygems.org'
 
-#ruby '2.1.1'
+# Distribute your app as a gem
+# gemspec
 
 gem 'thin'
-# gem 'trinidad', :platform => 'jruby'
-gem 'oj' # faster json
+gem 'oj'
 
+# Project requirements
 gem 'rake'
 
-# Frontend
+# Component requirements
 gem 'sass'
 gem 'haml'
+gem 'sequel'
+
 gem 'rabl'
-gem 'therubyracer'
 gem 'coffee-script'
 gem 'barista'
-gem 'sequel'
-gem 'padrino-warden'
 
 # DB
 gem 'pg'
@@ -31,10 +31,18 @@ gem 'nokogiri'
 gem 'weather_fetcher'
 
 # Test requirements
+gem 'rr', :require => false, :group => 'test'
 gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 # Padrino Stable Gem
 gem 'padrino', '0.12.4'
+gem 'padrino-warden'
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
+
+# Or Individual Gems
+# %w(core support gen helpers cache mailer admin).each do |g|
+#   gem 'padrino-' + g, '0.12.4'
+# end

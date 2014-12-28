@@ -1,4 +1,4 @@
-HomeioLite::App.controller :measurements do
+HomeIo::App.controller :measurements do
   get :show, map: "/measurements/:name" do
     @limit = (params[:limit] || 200).to_i
     @page = params[:page].to_i

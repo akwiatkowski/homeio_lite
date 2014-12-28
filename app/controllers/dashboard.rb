@@ -1,4 +1,4 @@
-HomeioLite::App.controller :dashboard do
+HomeIo::App.controller :dashboard do
   before do
     check_session
   end
