@@ -1,6 +1,9 @@
 class WeatherArchive < Sequel::Model
+  plugin :timestamps
+
   many_to_one :city
   many_to_one :weather_provider
+
 
   def self.create_from_weather_data(wd)
     # use metar version

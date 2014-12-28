@@ -1,4 +1,6 @@
 class WeatherMetarArchive < Sequel::Model
+  plugin :timestamps
+
   many_to_one :meas_type
 
   def self.create_from_weather_data(wd)

@@ -1,4 +1,6 @@
 class WeatherProvider < Sequel::Model
+  plugin :timestamps
+
   one_to_many :weather_archives
 
   def self.find_or_initialize_from_weather_data(wd)
