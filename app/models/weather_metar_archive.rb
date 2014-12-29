@@ -3,9 +3,9 @@ class WeatherMetarArchive < Sequel::Model
 
   many_to_one :meas_type
 
-  def self.create_from_weather_data(wd)
+  def self.initialize_from_weather_data(wd)
     # use non-metar version
-    return WeatherArchive.create_from_weather_data(wd) if false == wd.is_metar?
+    return WeatherArchive.initialize_from_weather_data(wd) if false == wd.is_metar?
 
     city = City.find_or_initialize_from_weather_data(wd)
 
@@ -25,7 +25,6 @@ class WeatherMetarArchive < Sequel::Model
     weather_metar_archive.snow_metar = wd.snow_metar
     weather_metar_archive.raw = wd.metar_string
 
-    weather_metar_archive.save
     weather_metar_archive
   end
 end

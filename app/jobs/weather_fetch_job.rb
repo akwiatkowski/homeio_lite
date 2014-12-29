@@ -15,8 +15,14 @@ class WeatherFetchJob
 
   def make_it_so
     data = WeatherFetcher::Fetcher.fetch(@cities)
-    data.each do |d|
-      weather_archive = WeatherArchive.create_from_weather_data(d)
+    data = data.collect do |d|
+      WeatherArchive.initialize_from_weather_data(d)
+    end
+
+    Sequel::Model.db.transaction do
+      data.each do |d|
+        d.save
+      end
     end
   end
 end

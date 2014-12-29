@@ -11,7 +11,6 @@ class City < Sequel::Model
 
     city = self.where(city_search_hash).first
     city = new(city_search_hash) if city.nil?
-    city.save
     city
   end
 end
