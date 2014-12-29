@@ -36,11 +36,6 @@ I18n.default_locale = :en
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
-  Padrino.dependency_paths << Padrino.root('config', 'backend', '*.rb')
-
-  Padrino.dependency_paths << Padrino.root('app', 'jobs', '*.rb')
-  Padrino.dependency_paths << Padrino.root('app', 'services', '*.rb')
-  Padrino.dependency_paths << Padrino.root('app', 'overseers', '*.rb')
 end
 
 ##
