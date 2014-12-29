@@ -10,7 +10,7 @@ class City < Sequel::Model
     city_search_hash.delete(:coords)
 
     city = self.where(city_search_hash).first
-    city = new(city_search_hash) if city.nil?
+    city = create(city_search_hash) if city.nil?
     city
   end
 end

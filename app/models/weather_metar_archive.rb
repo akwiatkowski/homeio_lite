@@ -1,6 +1,7 @@
 class WeatherMetarArchive < Sequel::Model
   plugin :timestamps
 
+  many_to_one :city
   many_to_one :meas_type
 
   def self.initialize_from_weather_data(wd)

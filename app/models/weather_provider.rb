@@ -7,7 +7,7 @@ class WeatherProvider < Sequel::Model
     weather_provider_search_hash = { name: wd.provider }
 
     weather_provider = self.where(weather_provider_search_hash).first
-    weather_provider = new(weather_provider_search_hash) if weather_provider.nil?
+    weather_provider = create(weather_provider_search_hash) if weather_provider.nil?
     weather_provider
   end
 end
