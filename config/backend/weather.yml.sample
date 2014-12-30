@@ -6,10 +6,504 @@
     :lon: 16.928329
   :classes:
     OnetPl:
-      :url: 'http://pogoda.onet.pl/0,198,38,poznan,miasto.html'
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,poznan,9204.html'
     WpPl:
-      :url: 'http://pogoda.wp.pl/miasto,poznan,mid,1201201,mi.html'
+      :url: 'http://pogoda.wp.pl/cid,43384,miasto,Pozna%C5%84,dlugoterminowa.html'
     InteriaPl:
-      :url: 'http://pogoda.interia.pl/miasta?id=11875'
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-poznan,cId,27457'
     WorldWeatherOnline:
       :key: 'api key'
+
+- :name: 'Inowrocław'
+  :country: 'Poland'
+  :coords:
+    :lat: 52.799264
+    :lon: 18.259935
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dlugoterminowa/europa,polska,inowroclaw,9296.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43704,miasto,Inowroc%C5%82aw,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-inowroclaw,cId,10726'
+
+- :name: 'Mogilno'
+  :country: 'Poland'
+  :coords:
+    :lat: 52.658612
+    :lon: 17.955923
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,mogilno,9224.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43712,miasto,Mogilno,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-mogilno,cId,21821'
+
+- :name: 'Bydgoszcz'
+  :country: 'Poland'
+  :coords:
+    :lat: 53.128893
+    :lon: 18.006363
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,bydgoszcz,9315.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43123,miasto,Bydgoszcz,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-bydgoszcz,cId,3696'
+
+- :name: 'Toruń'
+  :country: 'Poland'
+  :coords:
+    :lat: 53.019038
+    :lon: 18.599052
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,torun,9286.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43943,miasto,Toru%C5%84,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-torun,cId,35707'
+
+- :name: 'Warszawa'
+  :country: 'Poland'
+  :coords:
+    :lat: 52.237304
+    :lon: 21.016617
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,warszawa,9105.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43116,miasto,Warszawa,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-warszawa,cId,36917'
+
+- :name: 'Łódź'
+  :country: 'Poland'
+  :coords:
+    :lat: 51.77680
+    :lon: 19.45532
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,lodz,9205.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43495,miasto,%C5%81%C3%B3d%C5%BA,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-lodz,cId,19059'
+
+- :name: 'Kielce'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.868941
+    :lon: 20.629463
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,kielce,9287.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43875,miasto,Kielce,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-kielce,cId,13378'
+
+- :name: 'Lublin'
+  :country: 'Poland'
+  :coords:
+    :lat: 51.248292
+    :lon: 22.569237
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,lublin,9303.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43145,miasto,Lublin,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-lublin,cId,19393'
+
+- :name: 'Rzeszów'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.044926
+    :lon: 22.000694
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,rzeszow,9332.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43442,miasto,Rzesz%C3%B3w,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-rzeszow,cId,30389'
+
+- :name: 'Kraków'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.071508
+    :lon: 19.944077
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,krakow,9202.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43289,miasto,Krak%C3%B3w,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-krakow,cId,4970'
+
+- :name: 'Katowice'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.267531
+    :lon: 19.023399
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,katowice,9342.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43866,miasto,Katowice,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-katowice,cId,13095'
+
+- :name: 'Jaworzno'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.203847
+    :lon: 19.274712
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,jaworzno,9521.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43646,miasto,Jaworzno,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-jaworzno,cId,11698'
+
+- :name: 'Wrocław'
+  :country: 'Poland'
+  :coords:
+    :lat: 51.113265
+    :lon: 17.036819
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,wroclaw,9203.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43763,miasto,Wroc%C5%82aw,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-wroclaw,cId,39240'
+
+- :name: 'Zielona Góra'
+  :country: 'Poland'
+  :coords:
+    :lat: 51.938042
+    :lon: 15.506401
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,zielona-gora,9333.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43848,miasto,Zielona-G%C3%B3ra,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-zielona-gora,cId,41517'
+
+- :name: 'Szczecin'
+  :country: 'Poland'
+  :coords:
+    :lat: 53.435147
+    :lon: 14.558029
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,szczecin,9326.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43723,miasto,Szczecin,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-szczecin,cId,34668'
+
+- :name: 'Koszalin'
+  :country: 'Poland'
+  :coords:
+    :lat: 54.195507
+    :lon: 16.171074
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,koszalin,9259.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43669,miasto,Koszalin,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-koszalin,cId,15719'
+
+- :name: 'Gdańsk'
+  :country: 'Poland'
+  :coords:
+    :lat: 54.361598
+    :lon: 18.646317
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,gdansk,9201.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43935,miasto,Gda%C5%84sk,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-gdansk,cId,8048'
+
+- :name: 'Olsztyn'
+  :country: 'Poland'
+  :coords:
+    :lat: 53.781708
+    :lon: 20.479088
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,olsztyn,9247.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43701,miasto,Olsztyn,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-olsztyn,cId,24210'
+
+- :name: 'Suwałki'
+  :country: 'Poland'
+  :coords:
+    :lat: 54.114284
+    :lon: 22.928352
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,suwalki,9218.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43079,miasto,Suwa%C5%82ki,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-suwalki,cId,34166'
+
+- :name: 'Nowy Targ'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.478453
+    :lon: 20.031109
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,nowy-targ,9266.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43053,miasto,Nowy-Targ,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-nowy-targ,cId,23614'
+
+- :name: 'Białystok'
+  :country: 'Poland'
+  :coords:
+    :lat: 53.137009
+    :lon: 23.168678
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,bialystok,9372.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43390,miasto,Bia%C5%82ystok,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-bialystok,cId,1197'
+
+- :name: 'Zakopane'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.301531
+    :lon: 19.949684
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,zakopane,9231.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43341,miasto,Zakopane,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-zakopane,cId,40219'
+
+- :name: 'Szklarska Poręba'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.82542
+    :lon: 15.52853
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,szklarska-poreba,9222.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43940,miasto,Szklarska-Por%C4%99ba,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-szklarska-poreba,cId,34920'
+
+- :name: 'Karpacz'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.78151
+    :lon: 15.76506
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,karpacz,9280.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43793,miasto,Karpacz,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-karpacz,cId,12958'
+
+- :name: 'Kowary'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.79579
+    :lon: 15.83517
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-kowary,cId,15913'
+
+- :name: 'Marciszów'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.85284
+    :lon: 16.00847
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-marciszow,cId,20461'
+
+- :name: 'Boguszów-Gorce'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.75599
+    :lon: 16.20867
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-boguszow-gorce,cId,1964'
+
+- :name: 'Głuszyca Górna'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.67426
+    :lon: 16.37530
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-gluszyca-gorna,cId,8495'
+
+- :name: 'Radków'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.50396
+    :lon: 16.40136
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-radkow,cId,28496'
+
+- :name: 'Duszniki Zdrój'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.40441
+    :lon: 16.39006
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,duszniki-zdroj,9212.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43235,miasto,Duszniki-Zdr%C3%B3j,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-duszniki-zdroj,cId,7064'
+
+- :name: 'Bystrzyca Kłodzka'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.29952
+    :lon: 16.65416
+  :classes:
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43074,miasto,Bystrzyca-K%C5%82odzka,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-bystrzyca-klodzka,cId,3759'
+
+- :name: 'Stronie Śląskie'
+  :country: 'Poland'
+  :coords:
+    :lat: 50.29172
+    :lon: 16.87517
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-stronie-slaskie,cId,33525'
+
+- :name: 'Rajcza'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.50568
+    :lon: 19.10690
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-rajcza,cId,28721'
+
+- :name: 'Wisła'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.64902
+    :lon: 18.87237
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,wisla,9313.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43606,miasto,Wis%C5%82a,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-wisla,cId,37996'
+
+- :name: 'Zawoja'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.65254
+    :lon: 19.55002
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,zawoja,9232.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-zawoja,cId,40959'
+
+- :name: 'Koninki'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.59736
+    :lon: 20.07357
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,koninki,10124.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-koninki,cId,15230'
+
+- :name: 'Szczawnica'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.42481
+    :lon: 20.48339
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,szczawnica,9321.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43170,miasto,Szczawnica,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-szczawnica,cId,34651'
+
+- :name: 'Gorlice'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.65517
+    :lon: 21.16044
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,gorlice,9263.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43895,miasto,Gorlice,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-gorlice,cId,9011'
+
+- :name: 'Krempna'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.51112
+    :lon: 21.50424
+  :classes:
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-krempna,cId,16371'
+
+- :name: 'Komańcza'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.33538
+    :lon: 22.06962
+  :classes:
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,21452,miasto,Koma%C5%84cza,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-komancza,cId,15067'
+
+- :name: 'Ustrzyki Dolne'
+  :country: 'Poland'
+  :coords:
+    :lat: 49.42919
+    :lon: 22.59235
+  :classes:
+    OnetPl:
+      :url: 'http://pogoda.onet.pl/prognoza-pogody/dzis/europa,polska,ustrzyki-dolne,9206.html'
+    WpPl:
+      :url: 'http://pogoda.wp.pl/cid,43425,miasto,Ustrzyki-Dolne,dlugoterminowa.html'
+    InteriaPl:
+      :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-ustrzyki-dolne,cId,36664'
+
