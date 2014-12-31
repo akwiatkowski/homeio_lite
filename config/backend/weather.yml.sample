@@ -42,6 +42,7 @@
 
 - :name: 'Bydgoszcz'
   :country: 'Poland'
+  :metar: 'EPBY'
   :coords:
     :lat: 53.128893
     :lon: 18.006363
@@ -68,6 +69,7 @@
 
 - :name: 'Warszawa'
   :country: 'Poland'
+  :metar: 'EPWA'
   :coords:
     :lat: 52.237304
     :lon: 21.016617
@@ -133,6 +135,7 @@
 
 - :name: 'Kraków'
   :country: 'Poland'
+  :metar: 'EPKK'
   :coords:
     :lat: 50.071508
     :lon: 19.944077
@@ -146,6 +149,7 @@
 
 - :name: 'Katowice'
   :country: 'Poland'
+  :metar: 'EPKT'
   :coords:
     :lat: 50.267531
     :lon: 19.023399
@@ -507,3 +511,528 @@
     InteriaPl:
       :url: 'http://pogoda.interia.pl/prognoza-szczegolowa-ustrzyki-dolne,cId,36664'
 
+
+- :name: Muenster/Osnabrueck
+  :country: Germany
+  :metar: EDDG
+  :coords:
+    :lat: 52.1346
+    :lon: 7.6848
+
+- :name: Petropavlovsk-Kamchatskij
+  :country: Russia
+  :metar: UHPP
+  :coords:
+    :lat: 53.0833
+    :lon: 158.5833
+
+- :name: Tokyo
+  :country: Japan
+  :metar: RJTT
+  :coords:
+    :lat: 35.5523
+    :lon: 139.7797
+
+- :name: Khabarovsk
+  :country: Russia
+  :metar: UHHH
+  :coords:
+    :lat: 48.5167
+    :lon: 135.1667
+
+- :name: Vancouver
+  :country: Canada
+  :metar: CYVR
+  :coords:
+    :lat: 49.1939
+    :lon: -123.1844
+
+- :name: Portland
+  :country: USA
+  :metar: KPDX
+  :coords:
+    :lat: 45.5908
+    :lon: -122.6003
+
+- :name: New York
+  :country: USA
+  :metar: KNYC
+  :coords:
+    :lat: 40.779
+    :lon: -73.9692
+
+- :name: London
+  :country: UK
+  :metar: EGLL
+  :coords:
+    :lat: 51.470969
+    :lon: -0.45393
+
+- :name: Rome
+  :country: USA
+  :metar: KRMG
+  :coords:
+    :lat: 34.351458
+    :lon: -85.163326
+
+- :name: Dubai
+  :country: UAE
+  :metar: OMDB
+  :coords:
+    :lat: 25.252971
+    :lon: 55.364714
+
+- :name: Los Angeles
+  :country: USA
+  :metar: KLAX
+  :coords:
+    :lat: 33.946251
+    :lon: -118.408442
+
+- :name: Cairo
+  :country: Egypt
+  :metar: HECA
+  :coords:
+    :lat: 30.111448
+    :lon: 31.4139
+
+- :name: Hailuoto
+  :country: Finland
+  :metar: EFHL
+  :coords:
+    :lat: 65.096198
+    :lon: 24.733886
+
+- :name: Ivolo
+  :country: Finland
+  :metar: EFIV
+  :coords:
+    :lat: 68.674941
+    :lon: 27.572021
+
+- :name: Cape Tobin
+  :country: Greenland
+  :metar: BGKT
+  :coords:
+    :lat: 70.40016
+    :lon: -21.966662
+
+- :name: Godhavn
+  :country: Greenland
+  :metar: BGGN
+  :coords:
+    :lat: 69.253425
+    :lon: -53.505249
+
+- :name: Auckland
+  :country: New Zeland
+  :metar: NZAA
+  :coords:
+    :lat: -37.005058
+    :lon: 174.784025
+
+- :name: Laayoune/hassan Isl
+  :country: Morocco
+  :metar: GMML
+  :coords:
+    :lat: 27.1667
+    :lon: -13.2167
+
+- :name: Honolulu
+  :country: Hawaii
+  :metar: PHNL
+  :coords:
+    :lat: 21.333065
+    :lon: -157.918282
+
+- :name: Amundsen-Scott
+  :country: Antarctica
+  :metar: NZSP
+  :coords:
+    :lat: -89.983333
+    :lon: 179.983333
+
+- :name: Williams Field
+  :country: Antarctica
+  :metar: NZCM
+  :coords:
+    :lat: -77.866667
+    :lon: 166.966667
+
+- :name: Williams Field 2
+  :country: Antarctica
+  :metar: NZWD
+  :coords:
+    :lat: -77.8674
+    :lon: 167.0566
+
+- :name: Ice Runway
+  :country: Antarctica
+  :metar: NZIR
+  :coords:
+    :lat: -77.8521
+    :lon: 166.5692
+
+- :name: Pegasus Field
+  :country: Antarctica
+  :metar: NZPG
+  :coords:
+    :lat: -77.9634
+    :lon: 166.5246
+
+- :name: Arctic Bay
+  :country: Canada
+  :metar: CXAT
+  :coords:
+    :lat: 73.0
+    :lon: -85.0167
+
+- :name: Qaanaaq
+  :country: Greenland
+  :metar: BGQQ
+  :coords:
+    :lat: 77.4667
+    :lon: -69.2167
+
+- :name: Alert Airport
+  :country: Greenland
+  :metar: CYLR
+  :coords:
+    :lat: 82.5178
+    :lon: -62.2806
+
+- :name: Alert
+  :country: Greenland
+  :metar: CZLT
+  :coords:
+    :lat: 82.5
+    :lon: -62.3333
+
+- :name: Grise Fiord
+  :country: Greenland
+  :metar: CWGZ
+  :coords:
+    :lat: 76.4228
+    :lon: -82.9022
+
+- :name: Eureka
+  :country: Greenland
+  :metar: CWEU
+  :coords:
+    :lat: 79.9833
+    :lon: -85.9333
+
+- :name: Sharjah International
+  :country: UAE
+  :metar: OMSJ
+  :coords:
+    :lat: 25.3286
+    :lon: 55.5172
+
+- :name: Jakarta
+  :country: Java
+  :metar: WIID
+  :coords:
+    :lat: -6.15
+    :lon: 106.85
+
+- :name: Maradi
+  :country: Niger
+  :metar: DRRM
+  :coords:
+    :lat: 13.4667
+    :lon: 7.0833
+
+- :name: Isla De Pascua
+  :country: Polynesia
+  :metar: SCIP
+  :coords:
+    :lat: -27.1648
+    :lon: -109.4218
+
+- :name: Porto Velho
+  :country: Brazil
+  :metar: SBPV
+  :coords:
+    :lat: -8.7667
+    :lon: -63.9167
+
+- :name: Kathmandu
+  :country: Nepal
+  :metar: VNKT
+  :coords:
+    :lat: 27.6966
+    :lon: 85.3591
+
+- :name: London Stansted
+  :country: UK
+  :metar: EGSS
+  :coords:
+    :lat: 51.885
+    :lon: 0.235
+
+- :name: Southend-On-Sea
+  :country: UK
+  :metar: EGMC
+  :coords:
+    :lat: 51.5714
+    :lon: 0.6956
+
+- :name: Helsinki-vantaa
+  :country: Finland
+  :metar: EFHK
+  :coords:
+    :lat: 60.3172
+    :lon: 24.9633
+
+- :name: Enontekio
+  :country: Finland
+  :metar: EFET
+  :coords:
+    :lat: 68.3626
+    :lon: 23.4243
+
+- :name: Kittila
+  :country: Finland
+  :metar: EFKT
+  :coords:
+    :lat: 67.701
+    :lon: 24.8468
+
+- :name: Oulu
+  :country: Finland
+  :metar: EFOU
+  :coords:
+    :lat: 64.9301
+    :lon: 25.3546
+
+- :name: Khatanga
+  :country: Russia
+  :metar: UOHH
+  :coords:
+    :lat: 71.9833
+    :lon: 102.4667
+
+- :name: Saskylakh
+  :country: Russia
+  :metar: UERS
+  :coords:
+    :lat: 71.9667
+    :lon: 114.0833
+
+- :name: Alykel
+  :country: Russia
+  :metar: UOOO
+  :coords:
+    :lat: 69.3111
+    :lon: 87.3322
+
+- :name: Tiksi
+  :country: Russia
+  :metar: UEST
+  :coords:
+    :lat: 71.5833
+    :lon: 128.9167
+
+- :name: St. Peterburg
+  :country: Russia
+  :metar: ULLI
+  :coords:
+    :lat: 59.9667
+    :lon: 30.3
+
+- :name: Pago Pago
+  :country: Samoa
+  :metar: NSTU
+  :coords:
+    :lat: -14.331
+    :lon: -170.7105
+
+- :name: Honiara
+  :country: Solomon Islands
+  :metar: AGGH
+  :coords:
+    :lat: -9.428
+    :lon: 160.0548
+
+- :name: Luhansk
+  :country: Ukraine
+  :metar: UKCW
+  :coords:
+    :lat: 48.4174
+    :lon: 39.3741
+
+- :name: Sana'a
+  :country: Yemen
+  :metar: VNPK
+  :coords:
+    :lat: 15.5167
+    :lon: 44.1833
+
+- :name: Maseru
+  :country: Lesotho
+  :metar: FXMU
+  :coords:
+    :lat: -29.4623
+    :lon: 27.5525
+
+- :name: Grootfontein
+  :country: Namibia
+  :metar: FXMM
+  :coords:
+    :lat: -19.6022
+    :lon: 18.1227
+
+- :name: Tamatave
+  :country: Madagascar
+  :metar: FYGF
+  :coords:
+    :lat: -18.1095
+    :lon: 49.3925
+
+- :name: S. Tome
+  :country: S. Tome
+  :metar: FPPR
+  :coords:
+    :lat: 0.3782
+    :lon: 6.7122
+
+- :name: Plaisance Mauritius
+  :country: Mauritius
+  :metar: FIMP
+  :coords:
+    :lat: -20.4302
+    :lon: 57.6836
+
+- :name: Bujumbura
+  :country: Burundi
+  :metar: HBBA
+  :coords:
+    :lat: -3.324
+    :lon: 29.3185
+
+- :name: S. Pedro
+  :country: Cape Verde
+  :metar: GVSV
+  :coords:
+    :lat: 16.8332
+    :lon: -25.0555
+
+- :name: Samedan
+  :country: Switzerland
+  :metar: LSZS
+  :coords:
+    :lat: 46.5341
+    :lon: 9.8841
+
+- :name: Ercan
+  :country: Cyprus
+  :metar: LCEN
+  :coords:
+    :lat: 35.1489
+    :lon: 33.4997
+
+- :name: Stockholm
+  :country: Sweden
+  :metar: ESCM
+  :coords:
+    :lat: 59.6167
+    :lon: 17.95
+
+- :name: Svalbard Lufthavn
+  :country: Norway
+  :metar: ENBJ
+  :coords:
+    :lat: 78.2461
+    :lon: 15.4656
+
+- :name: Bardufoss
+  :country: Norway
+  :metar: ENDU
+  :coords:
+    :lat: 69.0558
+    :lon: 18.5404
+
+- :name: Heidrun
+  :country: Norway
+  :metar: ENHE
+  :coords:
+    :lat: 65.33
+    :lon: 2.33
+
+- :name: Hammerfest
+  :country: Norway
+  :metar: ENHF
+  :coords:
+    :lat: 70.6797
+    :lon: 23.6686
+
+- :name: Honningsvag
+  :country: Norway
+  :metar: ENHV
+  :coords:
+    :lat: 71.0167
+    :lon: 25.9833
+
+- :name: Kirkenes Lufthavn
+  :country: Norway
+  :metar: ENKR
+  :coords:
+    :lat: 69.7258
+    :lon: 29.8913
+
+- :name: D15-fa-1
+  :country: Netherlands
+  :metar: EHDV
+  :coords:
+    :lat: 54.3167
+    :lon: 2.9333
+
+- :name: K14-fa-1c
+  :country: Netherlands
+  :metar: EHKV
+  :coords:
+    :lat: 53.2667
+    :lon: 3.6333
+
+- :name: Sumburgh Cape
+  :country: UK
+  :metar: EGPB
+  :coords:
+    :lat: 59.8789
+    :lon: -1.2956
+
+- :name: Kardla
+  :country: Estonia
+  :metar: EEKA
+  :coords:
+    :lat: 58.9908
+    :lon: 22.8307
+
+- :name: Akureyri
+  :country: Iceland
+  :metar: BIAR
+  :coords:
+    :lat: 65.6856
+    :lon: -18.1002
+
+- :name: Mount Pleasant
+  :country: Falkland Islands
+  :metar: EGYP
+  :coords:
+    :lat: -51.8228
+    :lon: -58.4472
+
+- :name: E. T. Joshua Airport
+  :country: Lesser Antilles
+  :metar: TVSV
+  :coords:
+    :lat: 13.1435
+    :lon: -61.2124
+
+- :name: Wake Island
+  :country: Xmas Island
+  :metar: PWAK
+  :coords:
+    :lat: 19.2821
+    :lon: 166.6364

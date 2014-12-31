@@ -1,0 +1,15 @@
+%h1
+  Cities
+
+%table.table
+  %tr
+    %th Name
+    %th Lat
+    %th Lon
+
+  - City.all.each do |city|
+    %tr
+      %td= city.name
+      %td= city.lat
+      %td= city.lon
+

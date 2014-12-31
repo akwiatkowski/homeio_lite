@@ -1,14 +1,12 @@
 .DS_Store
 log/**/*
 tmp/**/*
-bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
 db/*.db
 .*.sw*
-.idea
-_tmp
+
 config/database.rb
 config/backend/io_server.rb
 config/backend/backend_server.rb
@@ -17,7 +15,6 @@ config/backend/measurements.rb
 config/backend/overseers.rb
 config/backend/location.rb
 config/backend/weather.yml
-
 
 public/javascripts/compiled/*
 public/stylesheets/application.css

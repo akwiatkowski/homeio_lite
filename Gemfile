@@ -29,6 +29,7 @@ gem 'hiredis'
 # HomeIO stuff
 gem 'nokogiri'
 gem 'weather_fetcher'
+gem 'colorize'
 
 # Test requirements
 gem 'rr', :require => false, :group => 'test'

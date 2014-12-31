@@ -10,8 +10,8 @@ class WeatherFetchJob
 
   def make_it_loop
     loop do
-      make_it_so
-      sleep 60
+      make_it_so(verbose: true)
+      sleep 3*3600
     end
   end
 
