@@ -1,6 +1,5 @@
 class MeasCacheStorage
   MAX_BUFFER_SIZE = 40_000
-  BACKEND = defined? USE_BACKEND and USE_BACKEND ? true : false
 
   attr_reader :ohm, :redis, :name, :definition,
               :redis_last_time_name, :redis_list_name
@@ -11,12 +10,6 @@ class MeasCacheStorage
 
   def initialize(name, _def = nil)
     @name = name
-    unless BACKEND
-      @redis = Redis.new
-      @redis_list_name = "homeio_#{name}_buffer"
-      @redis_last_time_name = "homeio_#{name}_last_time"
-    end
-
     need_save = false
     @ohm = MeasCache.find(name: name).first
     if @ohm.nil?
@@ -54,12 +47,7 @@ class MeasCacheStorage
   end
 
   def interval
-    if BACKEND
-      backend_interval
-    else
-      @ohm.interval
-    end
-
+    backend_interval
   end
 
   def command
@@ -86,32 +74,8 @@ class MeasCacheStorage
     @ohm.unit
   end
 
-  def fetchable?
-    return true if self.last_time.nil? # first fetch
-    from_last_added > interval
-  end
-
-  def fetch
-    fetch! if fetchable?
-  end
-
-  def fetch!
-    raw = IoServerProtocol.c(self.command, self.response_size)
-    logger.debug ("meas #{name} - fetched raw #{raw}")
-    add_measurement(raw)
-  end
-
   def backend_fetch(from, to)
     HomeioBackendProtocol.c(self.name, from, to)
-  end
-
-  def redis_last_time
-    # redis storage is not used when backend is chosen
-    return nil if BACKEND
-
-    t = redis.get(redis_last_time_name)
-    t = t.to_f unless t.nil?
-    t
   end
 
   def backend_last_time
@@ -128,44 +92,8 @@ class MeasCacheStorage
 
 
   def last_time(_refresh = false)
-    # such fast, wow, we can update it always
-    _refresh = true if BACKEND
-
-    if _refresh or @last_time.nil?
-      if BACKEND
-        backend_last_time
-      else
-        redis_last_time
-      end
-    end
-
+    backend_last_time
     @last_time
-  end
-
-  def last_time!
-    # redis storage is not used when backend is chosen
-    raise Exception if BACKEND
-
-    t = Time.now.to_f
-    redis.set(redis_last_time_name, t)
-    @last_time = t
-  end
-
-  def add_measurement(raw)
-    # redis storage is not used when backend is chosen
-    raise Exception if BACKEND
-
-    last_time!
-
-    if buffer_length > MAX_BUFFER_SIZE
-      redis.rpoplpush(redis_list_name, raw)
-    else
-      redis.lpush(redis_list_name, raw)
-    end
-  end
-
-  def redis_buffer_length
-    redis.llen(redis_list_name)
   end
 
   def backend_buffer_length
@@ -174,15 +102,7 @@ class MeasCacheStorage
   end
 
   def buffer_length
-    if BACKEND
-      backend_buffer_length
-    else
-      redis_buffer_length
-    end
-  end
-
-  def redis_buffer(from, to)
-    redis.lrange(redis_list_name, from, to).collect(&:to_i)
+    backend_buffer_length
   end
 
   def backend_buffer(from, to)
@@ -195,11 +115,7 @@ class MeasCacheStorage
   end
 
   def buffer(from, to)
-    if BACKEND
-      backend_buffer(from, to)
-    else
-      redis_buffer(from, to)
-    end
+    backend_buffer(from, to)
   end
 
   def last
@@ -208,13 +124,6 @@ class MeasCacheStorage
     r = r.first
     return nil if r.nil?
     r.to_i
-  end
-
-  def clear_buffer
-    # redis storage is not used when backend is chosen
-    raise Exception if BACKEND
-
-    redis.ltrim(redis_list_name, 0, 0)
   end
 
   def raw_to_value(raw)
