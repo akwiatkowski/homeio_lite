@@ -17,6 +17,8 @@ gem 'sequel'
 gem 'rabl'
 gem 'coffee-script'
 gem 'barista'
+gem 'execjs'
+gem 'therubyracer'
 
 # DB
 gem 'pg'
