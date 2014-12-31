@@ -136,7 +136,8 @@ GEM
       rack
     warden (1.2.3)
       rack (>= 1.0)
-    weather_fetcher (0.1.4)
+    weather_fetcher (0.1.5)
+      colorize
       curb
       simple_metar_parser (>= 0.0.1)
 

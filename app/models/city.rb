@@ -10,6 +10,22 @@ class City < Sequel::Model
     city_search_hash.delete(:coords)
 
     city = self.where(city_search_hash).first
+
+    # some cities can have similar, but not equal coords
+    if city.nil?
+      liberal_city_search_hash = city_search_hash.clone
+      liberal_city_search_hash.delete(:lat)
+      liberal_city_search_hash.delete(:lon)
+
+      city = self.where(city_search_hash).first
+
+      if city
+        city.lat = city_search_hash[:lat]
+        city.lon = city_search_hash[:lon]
+        city.save
+      end
+    end
+
     city = create(city_search_hash) if city.nil?
     city
   end

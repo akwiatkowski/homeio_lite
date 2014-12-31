@@ -16,7 +16,10 @@ class WeatherFetchJob
   end
 
   def make_it_so(verbose: false)
-    data = WeatherFetcher::Fetcher.fetch(@cities)
+    wf = WeatherFetcher::Fetcher.new
+    wf.logger = Padrino.logger
+
+    data = wf.fetch(@cities)
     data = data.collect do |d|
       WeatherArchive.initialize_from_weather_data(d)
     end
