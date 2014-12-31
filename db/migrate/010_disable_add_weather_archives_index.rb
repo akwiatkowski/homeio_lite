@@ -1,7 +1,7 @@
 Sequel.migration do
   up do
     alter_table :weather_archives do
-      remove_index [:time_from, :time_to, :city_id, :weather_provider_id]
+      drop_index [:time_from, :time_to, :city_id, :weather_provider_id]
     end
 
   end
