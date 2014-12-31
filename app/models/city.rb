@@ -17,7 +17,7 @@ class City < Sequel::Model
       liberal_city_search_hash.delete(:lat)
       liberal_city_search_hash.delete(:lon)
 
-      city = self.where(city_search_hash).first
+      city = self.where(liberal_city_search_hash).first
 
       if city
         city.lat = city_search_hash[:lat]
