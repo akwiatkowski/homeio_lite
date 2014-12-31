@@ -16,7 +16,8 @@ class WeatherMetarArchive < Sequel::Model
 
     weather_metar_archive_search_hash = {
       city_id: city.id,
-      time_from: wd.time_from
+      time_from: wd.time_from,
+      time_to: wd.time_to
     }
 
     weather_metar_archive = where(weather_metar_archive_search_hash).first
