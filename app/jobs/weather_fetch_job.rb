@@ -24,6 +24,8 @@ class WeatherFetchJob
       WeatherArchive.initialize_from_weather_data(d)
     end
 
+    data = data.uniq {|d| "#{d.class.to_s}#{d.city_id}#{d.weather_provider_id}#{d.time_from.to_i}#{d.time_to.to_i}"}
+
     Sequel::Model.db.transaction do
       data.each do |d|
         d.save

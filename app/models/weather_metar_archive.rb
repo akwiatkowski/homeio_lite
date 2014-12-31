@@ -4,6 +4,10 @@ class WeatherMetarArchive < Sequel::Model
   many_to_one :city
   many_to_one :meas_type
 
+  def weather_provider_id
+    nil
+  end
+
   def self.initialize_from_weather_data(wd)
     # use non-metar version
     return WeatherArchive.initialize_from_weather_data(wd) if false == wd.is_metar?
