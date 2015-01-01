@@ -1,4 +1,5 @@
 # Barista (for CoffeeScript Support)
+Barista.logger = Padrino.logger
 Barista.root = File.join(Barista.app_root, 'app/coffeescripts')
 Barista.output_root = File.join(Barista.app_root, 'public/javascripts/compiled')
 Barista.configure
@@ -8,9 +9,11 @@ Barista.configure
 if Padrino.env == :development
   Padrino.after_load do
     Barista.compile_all!
+    CoffeeReactCompiler.make_it_so
   end
 elsif Padrino.env == :production
   Barista.compile_all!
+  CoffeeReactCompiler.make_it_so
 end
 
 ##

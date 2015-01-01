@@ -16,6 +16,7 @@ gem 'sequel'
 
 gem 'rabl'
 gem 'coffee-script'
+gem 'coffee-react'
 gem 'barista'
 gem 'execjs'
 gem 'therubyracer'
