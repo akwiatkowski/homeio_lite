@@ -1,15 +1,35 @@
+- CoffeeReactCompiler.make_it_so
+
 %h1
   Cities
 
-%table.table
-  %tr
-    %th Name
-    %th Lat
-    %th Lon
+#cities
 
-  - City.all.each do |city|
+- if false
+  %table.table
     %tr
-      %td= city.name
-      %td= city.lat
-      %td= city.lon
+      %th Name
+      %th Lat
+      %th Lon
+
+    - City.all.each do |city|
+      %tr
+        %td= city.name
+        %td= city.lat
+        %td= city.lon
+
+
+:javascript
+  $(document).ready(function () {
+    //React.render(React.createElement(City, {"lon": 1.0, "lat": 1.0, "name": "city"}), $("#cities").get(0) );
+    //React.render(React.createElement(CityList, {"list": [{"lon": 1.0, "lat": 1.0, "name": "city"}]}), $("#cities").get(0) );
+    React.render(React.createElement(CityList, {"list": #{City.all.collect(&:to_hash).to_json} }), $("#cities").get(0) );
+
+    //var CityFactory = React.createFactory(City);
+    //
+    //React.render(
+    //  CityFactory({lon: 1.0, lat: 1.0, name: "city"}), document.getElementById('cities')
+    //);
+
+  });
 

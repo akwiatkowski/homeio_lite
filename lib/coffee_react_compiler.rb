@@ -10,6 +10,7 @@ class CoffeeReactCompiler
 
     Padrino.logger.debug("[CoffeeReactCompiler] Saving to #{output_path}")
 
+    #File.delete(output_path) if File.exists?(output_path)
     compiler.save(output_path)
   end
 end
